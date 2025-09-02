@@ -1,6 +1,8 @@
 import corsOptions from "#config/cors.js";
 import connectToDB from "#config/db.js";
 import errorMiddleware from "#middlewares/error.middleware.js";
+import { versionMiddleware } from "#middlewares/version.middleware.js";
+import adminRouter from "#routes/admin.routes.js";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
@@ -15,6 +17,11 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 app.use(express.json());
 app.use(helmet())
 app.use(cors(corsOptions));
+
+app.use("/api", versionMiddleware)
+
+app.use("/api/v1/admin", adminRouter);
+
 
 app.use("/", (req, res) => {
   res.send("Welcome to easepay");

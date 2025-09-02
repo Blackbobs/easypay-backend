@@ -1,15 +1,16 @@
-import type { JwtPayload } from "#utils/token.js";
 import type { NextFunction, Request, Response } from "express";
 
 import logger from "#config/logger.js";
 import { verifyAccessToken } from "#utils/token.js";
-import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-export interface AuthRequest extends Request {
-  user?: JwtPayload;
-}
+// export interface AuthRequest extends Request {
+//   user?: JwtPayload;
+// }
 
-export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
+const { JsonWebTokenError, NotBeforeError, TokenExpiredError } = jwt;
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
 

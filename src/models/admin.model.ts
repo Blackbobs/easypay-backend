@@ -7,7 +7,7 @@ const AdminSchema = new Schema<IAdmin>(
     department: { required: true, type: String },
     email: { required: true, type: String, unique: true },
     password: { required: true, type: String },
-    role: { default: "departmentAdmin", enum: ["superAdmin", "departmentAdmin"], required: true },
+    role: { default: "departmentAdmin", enum: ["superAdmin", "departmentAdmin"], required: true, type: String },
   },
   { timestamps: true },
 );

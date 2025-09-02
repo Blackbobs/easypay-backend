@@ -12,7 +12,9 @@ import Joi from "joi";
 
 export const createAdmin = async (req: Request, res: Response) => {
   try {
-    const value: AdminInput = await adminSchema.validateAsync(req.body);
+    const value = (await adminSchema.validateAsync(req.body)) as AdminInput;
+
+
 
     const existingAdmin = await Admin.findOne({ email: value.email });
     if (existingAdmin) {
@@ -77,7 +79,7 @@ export const getAllAdmin = async (req: Request, res: Response) => {
       return;
     }
 
-    const admins = await Admin.find({ role: "admin" });
+    const admins = await Admin.find({ role: "departmentAdmin" });
 
     if (admins.length === 0) {
       logger.warn("No admins available");
@@ -141,6 +143,7 @@ export const loginAdmin = async (req: Request<object, object, LoginRequest>, res
     const refreshToken = generateRefreshToken(payload);
 
     await RefreshToken.create({
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       token: refreshToken,
       user: user._id,
     });

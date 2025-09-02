@@ -1,12 +1,12 @@
-import type { Secret, SignOptions } from "jsonwebtoken";
+import type { JwtPayload as DefaultJwtPayload, Secret, SignOptions } from "jsonwebtoken";
 import type { Types } from "mongoose";
 
 import { jwtConfig } from "#config/jwt.config.js";
 import jwt from "jsonwebtoken";
 
-export interface JwtPayload {
+export interface JwtPayload extends DefaultJwtPayload {
   email: string;
-  id: string | Types.ObjectId;
+  id: Types.ObjectId;
   role: string;
 }
 

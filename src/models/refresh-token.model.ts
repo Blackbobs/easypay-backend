@@ -4,10 +4,7 @@ import { model, Schema } from "mongoose";
 
 const refreshTokenSchema = new Schema<IRefreshToken>(
   {
-    expiresAt: {
-      required: true,
-      type: Date,
-    },
+    expiresAt: { index: { expires: "7d" }, required: true, type: Date },
     revoked: {
       default: false,
       type: Boolean,
