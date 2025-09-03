@@ -1,66 +1,51 @@
 import Joi from "joi";
 
 export const transactionSchema = Joi.object({
-    amount: Joi.number()
-    .required()
-    .messages({
-        "any.required": "Amount is required",
-        "number.base": "Amount must be a number",
-    }),
-    email: Joi.string()
-    .required()
-    .messages({
-        "any.required": "Email is required",
-        "string.base": "Email must be a string"
-    }),
-    fullName: Joi.string()
-    .required()
-    .messages({
-        "any.required": "Full name is required",
-        "string.base": "Full name must be a string"
-    }),
-    matricNumber: Joi.string()
-    .required()
-    .messages({
-        "any.reuired": "Matirc number is required",
-        "string.base": "Matric number must be a string"
-    }),
-    paymentMethod: Joi.string()
+  amount: Joi.number().required().messages({
+    "any.required": "Amount is required",
+    "number.base": "Amount must be a number",
+  }),
+  bank: Joi.string().required().messages({
+    "any.required": "Bank is required",
+  }),
+  college: Joi.string().required().messages({
+    "any.required": "College is required",
+  }),
+  department: Joi.string().required().messages({
+    "any.required": "Department is required",
+  }),
+  email: Joi.string().email().required().messages({
+    "any.required": "Email is required",
+    "string.email": "Email must be valid",
+  }),
+  fullName: Joi.string().required().messages({
+    "any.required": "Full name is required",
+    "string.base": "Full name must be a string",
+  }),
+  matricNumber: Joi.string().required().messages({
+    "any.required": "Matric number is required",
+    "string.base": "Matric number must be a string",
+  }),
+  paymentMethod: Joi.string()
     .valid("card", "bank_transfer")
+    .default("bank_transfer") // ✅ handled here
+    .messages({
+      "any.only": "Payment method must be 'card' or 'bank_transfer'",
+    }),
+  phoneNumber: Joi.string()
+    .pattern(/^[0-9]{10,15}$/)
     .required()
     .messages({
-        "any.only": "Payment must be either  'card' or 'bank_transfer'",
-        "any.required": "Payment method is required"
+      "any.required": "Phone number is required",
+      "string.pattern.base": "Phone number must be 10–15 digits",
     }),
-    phoneNumber: Joi.string()
-    .required()
-    .messages({
-        "any.required": "Phone number is required",
-        "string.base": "Phone number must be a string"
-    }),
-    proofUrl: Joi.string()
-    .required()
-    .messages({
-        "any.required": "Proof URL is required",
-        "string.base": "Proof URL must be a string"
-    }),
-    reference: Joi.string(),
-    // .required()
-    // .messages({
-    //     "any.required": "Reference is required",
-    //     "string.base": "Reference must be a string"
-    // }),
-    status: Joi.string()
-    .valid("pending", "successful", "failed")
-    .default("pending")
-    .messages({
-        "any.only": "Status must  be 'pending', 'successful', or 'failed'"
-    }),
-    studentName: Joi.string()
-    .required()
-    .messages({
-        "any.required": "Student Name is required",
-        "string.base": "Student name must be a string"
-    })
-
-})
+  proofUrl: Joi.string().required().messages({
+    "any.required": "Proof URL is required",
+  }),
+  reference: Joi.string().messages({
+    "any.required": "Reference is required",
+  }),
+  status: Joi.string().valid("pending", "successful", "failed").default("pending").messages({
+    "any.only": "Status must be 'pending', 'successful', or 'failed'",
+  }),
+});

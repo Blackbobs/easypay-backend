@@ -3,6 +3,8 @@ import connectToDB from "#config/db.js";
 import errorMiddleware from "#middlewares/error.middleware.js";
 import { versionMiddleware } from "#middlewares/version.middleware.js";
 import adminRouter from "#routes/admin.routes.js";
+import transactionRouter from "#routes/transaction.routes.js";
+import uploadRouter from "#routes/upload.routes.js";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
@@ -15,28 +17,29 @@ const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.use(express.json());
-app.use(helmet())
+app.use(helmet());
 app.use(cors(corsOptions));
 
-app.use("/api", versionMiddleware)
+app.use("/api", versionMiddleware);
 
 app.use("/api/v1/admin", adminRouter);
-
+app.use("/api/v1/transaction", transactionRouter);
+app.use("/api/v1/cloudinary", uploadRouter);
 
 app.use("/", (req, res) => {
   res.send("Welcome to easepay");
 });
 
 app.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
-    if (err instanceof Error && err.message === "Not allowed by CORS") {
-      res.status(403).json({ error: "CORS policy blocked this request" });
-      return;
-    }
-  
-    next(err);
-  });
-  
-app.use(errorMiddleware)
+  if (err instanceof Error && err.message === "Not allowed by CORS") {
+    res.status(403).json({ error: "CORS policy blocked this request" });
+    return;
+  }
+
+  next(err);
+});
+
+app.use(errorMiddleware);
 
 const startServer = async () => {
   try {

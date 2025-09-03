@@ -10,7 +10,7 @@ export const createTransaction = async (req: Request, res: Response) => {
     try {
         const value = (await transactionSchema.validateAsync(req.body)) as ITransaction
 
-        const deaprtmentCode = value.matricNumber?.slice(0,3) || "GEN"
+        const deaprtmentCode = value.matricNumber.slice(0,3) || "GEN"
         const reference = generatePaymentReference(deaprtmentCode)
 
         const newTransaction = await Transaction.create({
@@ -28,16 +28,16 @@ export const createTransaction = async (req: Request, res: Response) => {
         
     }catch (error: unknown) {
         if (error instanceof Error) {
-          logger.error("Unable to fetch admins", {
+          logger.error("Unable to create a transaction", {
             message: error.message,
             stack: error.stack,
           });
         } else {
-          logger.error("Unable to fetch admins", { error: String(error) });
+          logger.error("Unable to create a transaction", { error: String(error) });
         }
     
         res.status(500).json({
-          message: "Unable to fetch admins",
+          message: "Unable to create a transaction",
           status: "Failed",
         });
         return;
