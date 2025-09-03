@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cron from 'node-cron';
 
-const YOUR_SERVER_URL = 'https://mage-waitlist-api.onrender.com/'; 
+const YOUR_SERVER_URL = 'https://easypay-backend-z1yc.onrender.com/'; 
 
 cron.schedule('*/14 * * * *', async () => {
   try {

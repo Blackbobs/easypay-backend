@@ -9,9 +9,9 @@ import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
 
-if (process.env.NODE_ENV === "production") {
-  void import("./utils/self-ping.js");
-}
+void import("./utils/self-ping.js");
+// if (process.env.NODE_ENV === "production") {
+// }
 
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
