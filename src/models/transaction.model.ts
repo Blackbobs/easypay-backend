@@ -1,17 +1,24 @@
-import mongoose, { Schema } from "mongoose";
+import { Department } from "#interface/deaprtment";
+import { DueType } from "#interface/due-type";
+import { PaymentMethod } from "#interface/payment-method";
+import { Status } from "#interface/status";
+import { ITransaction } from "#interface/transaction";
+import { Schema } from "mongoose";
+import { model } from "mongoose";
 
-const TransactionSchema = new Schema(
+const TransactionSchema = new Schema<ITransaction>(
   {
     amount: { required: true, type: Number },
     bank: { required: true, type: String },
     college: { required: true, type: String },
-    department: { required: true, type: String },
+    department: { enum: Department, required: true, type: String },
+    dueType: { enum: DueType, required: true, type: String },
     email: { required: true, type: String },
     fullName: { required: true, type: String },
     matricNumber: { required: true, type: String },
     paymentMethod: {
-      default: "bank_transfer",
-      enum: ["card", "bank_transfer"],
+      default: PaymentMethod.bank_transfer,
+      enum: PaymentMethod,
       required: true,
       type: String,
     },
@@ -19,13 +26,13 @@ const TransactionSchema = new Schema(
     proofUrl: { required: true, type: String },
     reference: { type: String, unique: true },
     status: {
-      default: "pending",
-      enum: ["pending", "successful", "failed"],
+      default: Status.pending,
+      enum: Status,
       type: String,
     },
   },
   { timestamps: true },
 );
 
-const Transaction = mongoose.model("Transactions", TransactionSchema);
+const Transaction = model<ITransaction>("Transaction", TransactionSchema);
 export default Transaction;

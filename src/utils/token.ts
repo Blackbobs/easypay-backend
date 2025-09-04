@@ -5,7 +5,6 @@ import { jwtConfig } from "#config/jwt.config.js";
 import jwt from "jsonwebtoken";
 
 export interface JwtPayload extends DefaultJwtPayload {
-  email: string;
   id: Types.ObjectId;
   role: string;
 }
