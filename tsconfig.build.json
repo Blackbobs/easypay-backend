@@ -1,13 +1,15 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "module": "esnext",
-    "target": "esnext",
-    "esModuleInterop": true,
-    "resolveJsonModule": true
+    "noEmit": false,
+    "outDir": "./dist"
   },
-  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "dist"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

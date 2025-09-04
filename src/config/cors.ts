@@ -1,6 +1,6 @@
 import type { CorsOptions } from "cors";
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["http://localhost:3000", "https://ease-pay-chi.vercel.app/"];
 
 const corsOptions: CorsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],

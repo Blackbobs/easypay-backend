@@ -1,29 +1,25 @@
 {
   "name": "easepay-backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "dist/server.js",
   "type": "module",
   "imports": {
     "#*": "./src/*"
   },
   "scripts": {
     "dev": "tsx --watch --env-file .env src/server.ts",
-    "start": "node -r tsconfig-paths/register --env-file=.env dist/server.js",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node --enable-source-maps --require tsconfig-paths/register --env-file .env dist/server.js",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "build": "tsc -p tsconfig.build.json",
     "test": "vitest",
     "test:run": "vitest --run",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.11.0",
     "bcrypt": "^6.0.0",

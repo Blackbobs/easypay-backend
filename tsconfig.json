@@ -4,7 +4,7 @@
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "#config/*": ["config/*"],
       "#controllers/*": ["controllers/*"],
@@ -18,7 +18,8 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "node16",
+     "moduleResolution": "node16",
     "target": "esnext",
     "types": ["node"],
     // For nodejs:
@@ -46,9 +47,9 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    // "verbatimModuleSyntax": false,
     "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
+    // "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
   },
