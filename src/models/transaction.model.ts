@@ -12,7 +12,7 @@ const TransactionSchema = new Schema<ITransaction>(
     bank: { required: true, type: String },
     college: { required: true, type: String },
     department: { enum: Department, required: true, type: String },
-    dueType: { enum: DueType, required: true, type: String },
+    dueType: { enum: Object.values(DueType), required: true, type: String },
     email: { required: true, type: String },
     fullName: { required: true, type: String },
     matricNumber: { required: true, type: String },

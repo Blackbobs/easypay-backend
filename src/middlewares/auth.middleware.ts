@@ -4,9 +4,6 @@ import logger from "#config/logger.js";
 import { verifyAccessToken } from "#utils/token.js";
 import jwt from "jsonwebtoken";
 
-// export interface AuthRequest extends Request {
-//   user?: JwtPayload;
-// }
 
 const { JsonWebTokenError, NotBeforeError, TokenExpiredError } = jwt;
 

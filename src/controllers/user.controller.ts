@@ -1,11 +1,14 @@
 import type { Request, Response } from "express";
 
 import logger from "#config/logger";
+import redis from "#config/redis";
 import RefreshToken from "#models/refresh-token.model";
 import User from "#models/user.model";
 import { loginSchema, userSchema } from "#schemas/user.schema";
 import { generateAccessToken, generateRefreshToken } from "#utils/token";
-import bcrypt from "bcrypt";
+import argon2 from "argon2"
+import { ForgetPasswordDto } from "dto/forget-password";
+import { ResetPasswordDto } from "dto/reset-password";
 import { loginDto, userDto } from "dto/user.dto";
 
 export const createUser = async (req: Request, res: Response) => {
@@ -24,7 +27,7 @@ export const createUser = async (req: Request, res: Response) => {
     }
 
     // Chnage the algorithm to Argon2
-    const hashedPassword = await bcrypt.hash(value.password, 10);
+    const hashedPassword = await argon2.hash(value.password);
 
     const newUser = await User.create({
       ...value,
@@ -77,7 +80,7 @@ export const loginUser = async (req: Request, res: Response) => {
     }
 
     // Change this to Argon2 later
-    const isMatch = await bcrypt.compare(value.password, user.password);
+    const isMatch = await argon2.verify(user.password, value.password);
     if (!isMatch) {
       logger.warn(`login attempt failed: user not found for ${value.email}`);
       return res.status(404).json({
@@ -128,25 +131,26 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-export const forgetPassword = async (req: Request, res: Response) => {
-  logger.warn("Forget password controller");
+export const forgetPassword = async (req: Request<object, object, ForgetPasswordDto>, res: Response) => {
+  logger.info("Forget password controller");
   try {
     // Remeber to type this later
     const { email } = req.body;
 
-    const checkEmail = await User.findOne({ email });
-    if (!checkEmail) {
-      logger.warn("Invalid credentials");
-      return res.status(404).json({
-        message: "Invalid credentials",
-        success: false,
-      });
+    const user = await User.findOne({ email });
+    if (!user) {
+      logger.warn(`Forget password: no account found for ${email}`);
+      return res.status(404).json({ message: "User not found", success: false });
     }
-    // generate an otp for reset password and send otp to user email and also save in the redis database
     // Attach the email to the otp
 
+    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+
+    await redis.set(`otp:${email}`, otp, "EX",60 * 5)
+    
+
     return res.status(200).json({
-      message: `An OTP was sent to ${email as string}, check  your email to continue`,
+      message: `OTP sent to ${email}`,
       success: true,
     });
   } catch (error: unknown) {
@@ -166,14 +170,26 @@ export const forgetPassword = async (req: Request, res: Response) => {
   }
 };
 
-export const resetPassword = async (req: Request, res: Response) => {
+export const resetPassword = async (req: Request<object, object, ResetPasswordDto>, res: Response) => {
   logger.warn("Reset password controller");
   try {
-    const { otp, oldPassword, newPassword } = req.body;
+    const { email, newPassword, otp } = req.body;
 
-    // fetch the user with the email attached to the otp and verify
-    // check if the password is equal to the old password
-    // Then I can set the password to the new password
+    const storedOtp = await redis.get(`otp:${email}`)
+
+    if(!storedOtp || storedOtp !== otp){
+      logger.warn("Invalid or expired OTP")
+      return res.status(400).json({
+        message: "Invalid or expired OTP",
+        success: false
+      })
+    }
+    const hashedPassword = await argon2.hash(newPassword)
+
+    await User.findOneAndUpdate({email}, {password: hashedPassword})
+    await redis.del(`otp:${email}`)
+
+   
 
     return res.status(200).json({
       message: "Password reset successfully",
