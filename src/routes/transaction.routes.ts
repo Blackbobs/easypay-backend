@@ -1,5 +1,5 @@
 import { createTransaction, getAdminTransactions, getAllTransactions, updateTransactionStatus } from "#controllers/transaction.controller.js";
-import { authMiddleware } from "#middlewares/auth.middleware";
+import { authMiddleware } from "#middlewares/auth.middleware.js";
 import { Router } from "express";
 
 const transactionRouter = Router()
