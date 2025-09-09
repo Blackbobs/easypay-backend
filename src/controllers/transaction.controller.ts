@@ -2,15 +2,15 @@ import type { ITransaction } from "#interface/transaction.js";
 import type { Request, Response } from "express";
 
 import logger from "#config/logger.js";
-import { DueType } from "#interface/due-type";
-import { Role } from "#interface/role";
-import { IUser } from "#interface/user";
+import { DueType } from "#interface/due-type.js";
+import { Role } from "#interface/role.js";
+import { IUser } from "#interface/user.js";
 import Transaction from "#models/transaction.model.js";
-import User from "#models/user.model";
+import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
-import { JwtPayload } from "#utils/token";
-import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto";
+import { JwtPayload } from "#utils/token.js";
+import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto.js";
 import { FilterQuery } from "mongoose";
 
 export const createTransaction = async (req: Request, res: Response) => {

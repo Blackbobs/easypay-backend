@@ -1,6 +1,6 @@
-import { College } from "#interface/college";
-import { Department } from "#interface/deaprtment";
-import { Role } from "#interface/role";
+import { College } from "#interface/college.js";
+import { Department } from "#interface/deaprtment.js";
+import { Role } from "#interface/role.js";
 
 export interface loginDto {
   email: string;

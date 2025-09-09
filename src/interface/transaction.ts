@@ -1,9 +1,9 @@
 import { Document } from "mongoose";
 
-import { Department } from "./deaprtment";
-import { DueType } from "./due-type";
-import { PaymentMethod } from "./payment-method";
-import { Status } from "./status";
+import { Department } from "./deaprtment.js";
+import { DueType } from "./due-type.js";
+import { PaymentMethod } from "./payment-method.js";
+import { Status } from "./status.js";
 
 export interface ITransaction extends Document {
   amount: number;

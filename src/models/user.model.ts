@@ -1,8 +1,8 @@
-import { College } from "#interface/college";
-import { Department } from "#interface/deaprtment";
-import { DueType } from "#interface/due-type";
-import { Role } from "#interface/role";
-import { IUser } from "#interface/user";
+import { College } from "#interface/college.js";
+import { Department } from "#interface/deaprtment.js";
+import { DueType } from "#interface/due-type.js";
+import { Role } from "#interface/role.js";
+import { IUser } from "#interface/user.js";
 import { model, Schema } from "mongoose";
 
 const userSchema = new Schema<IUser>(

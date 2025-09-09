@@ -33,13 +33,11 @@ export const refreshToken = async (req: Request<object, object, RefreshTokenRequ
     }
 
     const newAccessToken = generateAccessToken({
-      email: decoded.email,
       id: decoded.id,
       role: decoded.role,
     });
 
     const newRefreshToken = generateRefreshToken({
-      email: decoded.email,
       id: decoded.id,
       role: decoded.role,
     });

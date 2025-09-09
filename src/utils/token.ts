@@ -2,7 +2,7 @@ import type { JwtPayload as DefaultJwtPayload, Secret, SignOptions } from "jsonw
 import type { Types } from "mongoose";
 
 import { jwtConfig } from "#config/jwt.config.js";
-import { Role } from "#interface/role";
+import { Role } from "#interface/role.js";
 import jwt from "jsonwebtoken";
 
 export interface JwtPayload extends DefaultJwtPayload {

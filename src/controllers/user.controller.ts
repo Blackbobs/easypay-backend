@@ -1,15 +1,15 @@
 import type { Request, Response } from "express";
 
-import logger from "#config/logger";
-import redis from "#config/redis";
-import RefreshToken from "#models/refresh-token.model";
-import User from "#models/user.model";
-import { loginSchema, userSchema } from "#schemas/user.schema";
-import { generateAccessToken, generateRefreshToken } from "#utils/token";
+import logger from "#config/logger.js";
+import redis from "#config/redis.js";
+import RefreshToken from "#models/refresh-token.model.js";
+import User from "#models/user.model.js";
+import { loginSchema, userSchema } from "#schemas/user.schema.js";
+import { generateAccessToken, generateRefreshToken } from "#utils/token.js";
 import argon2 from "argon2"
-import { ForgetPasswordDto } from "dto/forget-password";
-import { ResetPasswordDto } from "dto/reset-password";
-import { loginDto, userDto } from "dto/user.dto";
+import { ForgetPasswordDto } from "dto/forget-password.js";
+import { ResetPasswordDto } from "dto/reset-password.js";
+import { loginDto, userDto } from "dto/user.dto.js";
 
 export const createUser = async (req: Request, res: Response) => {
   logger.info("Create user controller");

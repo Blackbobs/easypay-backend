@@ -1,10 +1,9 @@
-import { Department } from "#interface/deaprtment";
-import { DueType } from "#interface/due-type";
-import { PaymentMethod } from "#interface/payment-method";
-import { Status } from "#interface/status";
-import { ITransaction } from "#interface/transaction";
-import { Schema } from "mongoose";
-import { model } from "mongoose";
+import { Department } from "#interface/deaprtment.js";
+import { DueType } from "#interface/due-type.js";
+import { PaymentMethod } from "#interface/payment-method.js";
+import { Status } from "#interface/status.js";
+import { ITransaction } from "#interface/transaction.js";
+import { model, Schema} from "mongoose";
 
 const TransactionSchema = new Schema<ITransaction>(
   {
