@@ -85,6 +85,47 @@ export const getAllTransactions = async (_req: Request, res: Response) => {
   }
 };
 
+export const getRecentTransactions = async (req: Request, res: Response) => {
+  logger.info("Get recent transaction controller");
+  try {
+    const limit = Number(req.query.limit) || 10;
+
+    const transactions = await Transaction.find()
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .select("email amount status dueType proofUrl createdAt")
+      .lean();
+
+    if (transactions.length === 0) {
+      logger.warn("No recent transactions found");
+      return res.status(200).json({
+        data: [],
+        message: "No recent transactions found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      data: transactions,
+      message: "Recent transactions fetched successfully",
+      success: true,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error("An error occured while trying to fetch the recent transactions", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occured while trying to fetch the recent transactions", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occured while trying to fetch  the recent transactions",
+      success: false,
+    });
+  }
+};
+
 export const updateTransactionStatus = async (req: Request<UpdateTransactionParams, unknown, UpdateTransactionBody>, res: Response) => {
   logger.info("Update transaction status controller");
   try {
