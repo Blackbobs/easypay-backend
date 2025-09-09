@@ -10,10 +10,11 @@ import User from "#models/user.model";
 import { transactionSchema } from "#schemas/transaction.schema.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
 import { JwtPayload } from "#utils/token";
+import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto";
 import { FilterQuery } from "mongoose";
 
 export const createTransaction = async (req: Request, res: Response) => {
-  logger.warn("Create transaction controller");
+  logger.info("Create transaction controller");
   try {
     const value = (await transactionSchema.validateAsync(req.body)) as ITransaction;
 
@@ -50,7 +51,7 @@ export const createTransaction = async (req: Request, res: Response) => {
 };
 
 export const getAllTransactions = async (_req: Request, res: Response) => {
-  logger.warn("Fetch all transactions controller");
+  logger.info("Fetch all transactions controller");
   try {
     const transactions = await Transaction.find().exec();
 
@@ -84,14 +85,43 @@ export const getAllTransactions = async (_req: Request, res: Response) => {
   }
 };
 
-
-
-export const updateTransactionStatus = async (req: Request, res: Response) => {
-  logger.warn("Update transaction status controller");
+export const updateTransactionStatus = async (req: Request<UpdateTransactionParams, unknown, UpdateTransactionBody>, res: Response) => {
+  logger.info("Update transaction status controller");
   try {
     const { id } = req.params;
-    const transaction = await Transaction.findOne({ _id: id }).exec();
-    console.log(transaction)
+    const { status } = req.body;
+
+    if (!id) {
+      logger.warn("Transaction ID is required");
+      return res.status(400).json({
+        message: "Transaction ID is required",
+        success: false,
+      });
+    }
+
+    if (!status) {
+      logger.warn("Status is required");
+      return res.status(400).json({
+        message: "Status is required",
+        success: false,
+      });
+    }
+    const transaction = await Transaction.findByIdAndUpdate<ITransaction>(id, { status }, { new: true });
+
+    if (!transaction) {
+      logger.warn("Transaction not found");
+      return res.status(400).json({
+        message: "Transaction not found",
+        success: false,
+      });
+    }
+
+    logger.info(`Transaction status updated to ${status}`);
+    return res.status(200).json({
+      data: transaction,
+      message: `Transaction status updated to ${status}`,
+      success: true,
+    });
   } catch (error) {
     if (error instanceof Error) {
       logger.error("An error occured while updating transaction status", {
@@ -109,7 +139,7 @@ export const updateTransactionStatus = async (req: Request, res: Response) => {
 };
 
 export const getTransactionsByDueType = async (req: Request, res: Response) => {
-  logger.warn("Get transactions by due type controller");
+  logger.info("Get transactions by due type controller");
   try {
     const { dueType } = req.params;
 
@@ -152,6 +182,7 @@ export const getTransactionsByDueType = async (req: Request, res: Response) => {
 };
 
 export const getAdminTransactions = async (req: Request, res: Response) => {
+  logger.info("Get admin transactions controller");
   try {
     if (!req.user) {
       logger.warn("Unauthorized access");
@@ -179,12 +210,11 @@ export const getAdminTransactions = async (req: Request, res: Response) => {
       });
     }
 
-  
     const filter: FilterQuery<ITransaction> = {};
 
     switch (admin.dueType) {
       case DueType.college:
-          filter.college = admin.college;
+        filter.college = admin.college;
         break;
       case DueType.department:
         filter.department = admin.department;

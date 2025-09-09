@@ -4,6 +4,8 @@ import errorMiddleware from "#middlewares/error.middleware.js";
 import { versionMiddleware } from "#middlewares/version.middleware.js";
 import transactionRouter from "#routes/transaction.routes.js";
 import uploadRouter from "#routes/upload.routes.js";
+import userRouter from "#routes/user.routes.js";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
@@ -17,11 +19,13 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.use(express.json());
 app.use(helmet());
+app.use(cookieParser())
 app.use(cors(corsOptions));
 
 app.use("/api", versionMiddleware);
 
-app.use("/api/v1/transaction", transactionRouter);
+app.use("/api/v1/users", userRouter)
+app.use("/api/v1/transactions", transactionRouter);
 app.use("/api/v1/cloudinary", uploadRouter);
 
 app.use("/", (req, res) => {

@@ -12,7 +12,7 @@ import { ResetPasswordDto } from "dto/reset-password";
 import { loginDto, userDto } from "dto/user.dto";
 
 export const createUser = async (req: Request, res: Response) => {
-  logger.warn("Create user controller");
+  logger.info("Create user controller");
   try {
     const value = (await userSchema.validateAsync(req.body)) as userDto;
 
@@ -64,7 +64,7 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
-  logger.warn("Login user controller");
+  logger.info("Login user controller");
   try {
     const value = (await loginSchema.validateAsync(req.body)) as loginDto;
 
@@ -134,7 +134,6 @@ export const loginUser = async (req: Request, res: Response) => {
 export const forgetPassword = async (req: Request<object, object, ForgetPasswordDto>, res: Response) => {
   logger.info("Forget password controller");
   try {
-    // Remeber to type this later
     const { email } = req.body;
 
     const user = await User.findOne({ email });

@@ -9,23 +9,14 @@ const { JsonWebTokenError, NotBeforeError, TokenExpiredError } = jwt;
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const authHeader = req.headers.authorization;
+    const token = req.cookies.accessToken as string;
 
-    if (!authHeader?.startsWith("Bearer ")) {
-      logger.warn("Unauthorized access attempt - no token provided");
-      res.status(401).json({ message: "No token provided" });
-      return;
-    }
 
-    const tokenParts = authHeader.split(" ");
-    const token = tokenParts[1];
-
-    if (!token) {
-      logger.warn("Malformed authorization header - missing token");
-      res.status(401).json({ message: "Malformed token" });
-      return;
-    }
-
+   if (!token) {
+    logger.warn("Unauthorized access attempt - no token in cookies");
+    res.status(401).json({ message: "No token provided" });
+    return;
+  }
     try {
       const decoded = verifyAccessToken(token);
       req.user = decoded;

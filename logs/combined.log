@@ -11,3 +11,32 @@
 {"level":"error","message":"Unable to create a transaction Student Name is required","stack":"ValidationError: Student Name is required","timestamp":"2025-09-03T15:47:12.971Z"}
 {"level":"error","message":"Unable to create a transaction \"college\" is not allowed","stack":"ValidationError: \"college\" is not allowed","timestamp":"2025-09-03T15:50:57.457Z"}
 {"level":"error","message":"Unable to create a transaction Reference is required","stack":"ValidationError: Reference is required","timestamp":"2025-09-03T16:00:49.299Z"}
+{"level":"warn","message":"✅ Redis connected","timestamp":"2025-09-08T15:50:51.708Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T15:59:23.162Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:04:04.763Z"}
+{"level":"warn","message":"Create user controller","timestamp":"2025-09-08T16:04:13.455Z"}
+{"level":"error","message":"Unable to create a new user User validation failed: dueType: Path `dueType` is required., college: `colphys` is not a valid enum value for path `college`., department: `chm` is not a valid enum value for path `department`.","stack":"ValidationError: User validation failed: dueType: Path `dueType` is required., college: `colphys` is not a valid enum value for path `college`., department: `chm` is not a valid enum value for path `department`.\n    at Document.invalidate (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/mongoose/lib/document.js:3358:32)\n    at /home/black-bobs/Desktop/Work/easepay-backend/node_modules/mongoose/lib/document.js:3119:17\n    at /home/black-bobs/Desktop/Work/easepay-backend/node_modules/mongoose/lib/schemaType.js:1410:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-09-08T16:04:14.387Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:07:01.902Z"}
+{"level":"warn","message":"Create user controller","timestamp":"2025-09-08T16:12:14.189Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:14:01.320Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:14:50.404Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-08T16:15:13.954Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:17:39.458Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:17:58.350Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-08T16:18:51.271Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:19:05.967Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-08T16:26:10.194Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-08T16:26:15.894Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:27:58.085Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:28:02.368Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:28:12.083Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:28:33.249Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:29:07.755Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-08T16:29:29.119Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T16:29:48.082Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-08T16:35:30.183Z"}
+{"level":"warn","message":"Access token expired","timestamp":"2025-09-08T16:35:51.139Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-08T17:03:43.899Z"}
+{"level":"warn","message":"Unauthorized access attempt - no token in cookies","timestamp":"2025-09-08T17:04:06.547Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-08T17:04:53.858Z"}
+{"level":"info","message":"Get admin transactions controller","timestamp":"2025-09-08T17:05:11.496Z"}

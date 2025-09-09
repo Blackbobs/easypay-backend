@@ -7,6 +7,9 @@ export const userSchema = Joi.object({
   department: Joi.string().required().messages({
     "string.empty": "Department is required",
   }),
+  dueType: Joi.string().required().messages({
+    "string.empty": "due type is required"
+  }),
   email: Joi.string().email().required().messages({
     "string.empty": "Email is required",
     "string:email": "Please enter a valid email address",

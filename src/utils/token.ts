@@ -2,11 +2,12 @@ import type { JwtPayload as DefaultJwtPayload, Secret, SignOptions } from "jsonw
 import type { Types } from "mongoose";
 
 import { jwtConfig } from "#config/jwt.config.js";
+import { Role } from "#interface/role";
 import jwt from "jsonwebtoken";
 
 export interface JwtPayload extends DefaultJwtPayload {
   id: Types.ObjectId;
-  role: string;
+  role: Role;
 }
 
 const accessSecret: Secret = jwtConfig.accessSecret as Secret;
