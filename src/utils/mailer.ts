@@ -1,8 +1,8 @@
 import { ITransaction } from "#interface/transaction.js";
 import nodemailer from "nodemailer";
 
-import { formatCurrency } from "./format-currency";
-import { buildReceiptHtml } from "./receipt";
+import { formatCurrency } from "./format-currency.js";
+import { buildReceiptHtml } from "./receipt.js";
 
 const transporter = nodemailer.createTransport({
   auth: {
