@@ -5,11 +5,12 @@ import redis from "#config/redis.js";
 import RefreshToken from "#models/refresh-token.model.js";
 import User from "#models/user.model.js";
 import { loginSchema, userSchema } from "#schemas/user.schema.js";
-import { generateAccessToken, generateRefreshToken } from "#utils/token.js";
+import { generateAccessToken, generateRefreshToken, verifyAccessToken } from "#utils/token.js";
 import argon2 from "argon2"
 import { ForgetPasswordDto } from "dto/forget-password.js";
 import { ResetPasswordDto } from "dto/reset-password.js";
 import { loginDto, userDto } from "dto/user.dto.js";
+import { Types } from "mongoose";
 
 export const createUser = async (req: Request, res: Response) => {
   logger.info("Create user controller");
@@ -96,14 +97,14 @@ export const loginUser = async (req: Request, res: Response) => {
       httpOnly: true,
       maxAge: 15 * 60 * 1000, 
       sameSite: "none",       
-      secure: false,   
+      secure: process.env.NODE_ENV ==="production",   
     });
     
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, 
       sameSite: "none",
-      secure: false,
+      secure: process.env.NODE_ENV ==="production",
     });
     await RefreshToken.create({
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
@@ -137,6 +138,62 @@ export const loginUser = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getCurrentUser = async (req: Request, res: Response) => {
+  logger.info("Get current logged-in user controller");
+
+  try {
+    const accessToken = req.cookies.accessToken as string | undefined;
+
+    if (!accessToken) {
+      return res.status(401).json({
+        message: "Access token missing",
+        success: false,
+      });
+    }
+
+
+    const decoded = verifyAccessToken(accessToken) as { id: Types.ObjectId; role: string };
+
+   
+
+    
+    const user = await User.findById(decoded.id).select("-password"); 
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      data: {
+        college: user.college,
+        department: user.department,
+        email: user.email,
+        id: user._id,
+        username: user.username,
+      },
+      messsage: "Current logged in user fetched successfully",
+      success: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("Unable to get current user", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("Unable to get current user", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "Unable to get current user",
+      success: false,
+    });
+  }
+};
+
 
 export const forgetPassword = async (req: Request<object, object, ForgetPasswordDto>, res: Response) => {
   logger.info("Forget password controller");
@@ -241,5 +298,42 @@ export const deleteUser = async (req: Request, res: Response) => {
     } else {
       logger.error("Unable to delete user", { error: String(error) });
     }
+  }
+};
+
+export const logoutController = async (req: Request, res: Response) => {
+  try {
+    const refreshToken = req.cookies.refreshToken as string | undefined;
+
+    if (refreshToken) {
+      await RefreshToken.findOneAndUpdate(
+        { token: refreshToken },
+        { revoked: true }
+      );
+    }
+
+    res.clearCookie("accessToken", {
+      httpOnly: true,
+      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    return res.json({ message: "Logged out successfully" });
+  } catch (error: unknown) {
+    if(error instanceof Error){
+      logger.error("An error occured while trying to logout", {
+        message: error.message,
+        stack: error.stack
+      })
+    }else{
+      logger.error("An error occured while trying to logout", {error: String(error)})
+    }
+    return res.status(500).json({ message: "Failed to log out" });
   }
 };

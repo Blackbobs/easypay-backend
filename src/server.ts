@@ -17,10 +17,10 @@ if (process.env.NODE_ENV === "production") {
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 5050;
 
-app.use(express.json());
-app.use(helmet());
-app.use(cookieParser())
 app.use(cors(corsOptions));
+app.use(helmet());
+app.use(express.json());
+app.use(cookieParser())
 
 app.use("/api", versionMiddleware);
 

@@ -42,3 +42,66 @@
 {"level":"info","message":"Get admin transactions controller","timestamp":"2025-09-08T17:05:11.496Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T09:51:15.416Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T09:52:18.673Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T11:31:34.205Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T11:33:29.818Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T11:54:40.765Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T12:59:57.453Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T13:00:25.922Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T13:04:50.624Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T13:06:22.227Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T13:07:25.025Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T13:08:11.245Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:08:17.002Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T13:10:27.410Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:20:51.558Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T13:29:28.380Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:29:30.470Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:32:12.496Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:32:51.597Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:32:58.060Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:33:03.072Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:33:07.448Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:33:17.132Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:33:33.405Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:33:36.088Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:34:03.491Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T13:34:16.185Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T14:16:22.627Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T14:21:23.938Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T14:22:20.631Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T14:25:41.575Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T14:25:45.433Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:26:26.890Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:28:41.938Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:29:37.295Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:31:38.662Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:38:09.847Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:38:28.427Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:39:12.676Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:39:34.224Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:39:47.194Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:39:57.633Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T14:40:41.950Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T14:53:13.599Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:06:59.939Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:07:08.553Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:12:31.430Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:14:14.336Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-10T15:14:30.408Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:21:19.599Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:21:39.298Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:25:56.852Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:26:13.032Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:26:28.561Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:27:19.964Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-10T15:28:39.157Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-10T15:29:42.168Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:37:14.725Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T15:52:49.031Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:24:40.641Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:26:05.774Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:27:18.247Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:28:06.402Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:28:42.251Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:29:53.714Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:31:52.526Z"}

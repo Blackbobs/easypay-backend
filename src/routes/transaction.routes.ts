@@ -10,6 +10,6 @@ transactionRouter.get("/recent", authMiddleware, getRecentTransactions)
 transactionRouter.get("/admin", authMiddleware, getAdminTransactions)
 transactionRouter.get("/admin/success", authMiddleware, getAdminSuccessfulTransactions)
 transactionRouter.get("/:id", authMiddleware, getTransactionById)
-transactionRouter.put("/:id", authMiddleware, updateTransactionStatus)
+transactionRouter.patch("/:id", authMiddleware, updateTransactionStatus)
 
 export default transactionRouter

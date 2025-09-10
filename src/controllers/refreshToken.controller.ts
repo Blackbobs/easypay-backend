@@ -2,68 +2,65 @@ import type { Request, Response } from "express";
 
 import logger from "#config/logger.js";
 import RefreshToken from "#models/refresh-token.model.js";
-import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "#utils/token.js";
+import User from "#models/user.model.js";
+import { generateAccessToken, verifyRefreshToken } from "#utils/token.js";
+import jwt from "jsonwebtoken";
 
-interface RefreshTokenRequest {
-  refreshToken: string;
-}
+const { JsonWebTokenError, NotBeforeError, TokenExpiredError } = jwt;
 
-export const refreshToken = async (req: Request<object, object, RefreshTokenRequest>, res: Response) => {
+export const refreshTokenController = async (req: Request, res: Response) => {
+  const refreshToken = req.cookies.refreshToken as string | undefined;
+
+  if (!refreshToken) {
+    return res.status(401).json({ message: "No refresh token provided" });
+  }
+
   try {
-    const { refreshToken } = req.body;
+    const decoded = verifyRefreshToken(refreshToken);
 
-    if (!refreshToken) {
-      logger.warn("⚠️ Refresh attempt without token");
-      res.status(401).json({ message: "Refresh token required" });
-      return;
-    }
+    // Ensure token exists in DB
+    const storedToken = await RefreshToken.findOne({
+      revoked: false,
+      token: refreshToken,
+      user: decoded.id,
+    });
 
-    let decoded;
-    try {
-      decoded = verifyRefreshToken(refreshToken);
-    } catch (err) {
-      logger.warn("❌ Invalid refresh token", err);
-      return res.status(403).json({ message: "Invalid refresh token" });
-    }
-
-    const storedToken = await RefreshToken.findOne({ token: refreshToken });
     if (!storedToken) {
-      logger.warn("⚠️ Refresh token not found in DB or revoked", { tokenId: decoded.id });
-      return res.status(403).json({ message: "Refresh token invalid or revoked" });
+      return res.status(401).json({ message: "Invalid refresh token" });
     }
 
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(401).json({ message: "User not found" });
+    }
+
+    // Generate new access token
     const newAccessToken = generateAccessToken({
-      id: decoded.id,
-      role: decoded.role,
+      id: user._id,
+      role: user.role,
     });
 
-    const newRefreshToken = generateRefreshToken({
-      id: decoded.id,
-      role: decoded.role,
+    res.cookie("accessToken", newAccessToken, {
+      httpOnly: true,
+      maxAge: 15 * 60 * 1000,
+      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
     });
 
-    storedToken.token = newRefreshToken;
-    await storedToken.save();
-
-    logger.info("✅ Access token refreshed successfully", { userId: decoded.id });
-
-    return res.status(200).json({
-      accessToken: newAccessToken,
-      refreshToken: newRefreshToken,
-    });
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      logger.error("Unable to refresh access token", {
-        message: error.message,
-        stack: error.stack,
-      });
-    } else {
-      logger.error("Unable to refresh access token", { error: String(error) });
+    return res.json({ accessToken: newAccessToken });
+  } catch (err: unknown) {
+    if (err instanceof TokenExpiredError) {
+      logger.warn("Refresh token expired");
+      return res.status(401).json({ message: "Refresh token expired" });
+    }
+    if (err instanceof JsonWebTokenError) {
+      return res.status(401).json({ message: "Invalid refresh token" });
+    }
+    if (err instanceof NotBeforeError) {
+      return res.status(401).json({ message: "Refresh token not active yet" });
     }
 
-    res.status(500).json({
-      message: "Unable to refresh access token",
-      status: "Failed",
-    });
+    logger.error("Unexpected refresh error", { error: String(err) });
+    return res.status(401).json({ message: "Refresh failed" });
   }
 };
