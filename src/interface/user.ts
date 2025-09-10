@@ -13,6 +13,7 @@ export interface IUser extends Document {
   dueType: DueType,
   email: string;
   password: string;
+  receiptName: string;
   role: Role;
   updatedAt: Date;
   username: string;

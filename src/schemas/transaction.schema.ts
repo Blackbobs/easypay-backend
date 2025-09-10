@@ -15,7 +15,7 @@ export const transactionSchema = Joi.object({
     "any.required": "Department is required",
   }),
   dueType: Joi.string().required().messages({
-    "string.empty": "due type is required"
+    "string.empty": "due type is required",
   }),
   email: Joi.string().email().required().messages({
     "any.required": "Email is required",
@@ -45,6 +45,7 @@ export const transactionSchema = Joi.object({
   proofUrl: Joi.string().required().messages({
     "any.required": "Proof URL is required",
   }),
+  receiptName: Joi.string(),
   reference: Joi.string().messages({
     "any.required": "Reference is required",
   }),

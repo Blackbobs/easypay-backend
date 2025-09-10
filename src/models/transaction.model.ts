@@ -3,7 +3,7 @@ import { DueType } from "#interface/due-type.js";
 import { PaymentMethod } from "#interface/payment-method.js";
 import { Status } from "#interface/status.js";
 import { ITransaction } from "#interface/transaction.js";
-import { model, Schema} from "mongoose";
+import { model, Schema } from "mongoose";
 
 const TransactionSchema = new Schema<ITransaction>(
   {
@@ -23,6 +23,7 @@ const TransactionSchema = new Schema<ITransaction>(
     },
     phoneNumber: { required: true, type: String },
     proofUrl: { required: true, type: String },
+    receiptName: { type: String },
     reference: { type: String, unique: true },
     status: {
       default: Status.pending,

@@ -21,6 +21,9 @@ export const userSchema = Joi.object({
       "string.empty": "Password is required",
       "string.pattern.base": "Password must be 8-30 chars and include only letters, numbers, and @.!#$%^&*",
     }),
+    receiptName: Joi.string().required().messages({
+      "string.empty": "Receipt name is required",
+    }),
   role: Joi.string().valid("admin", "superAdmin").required().messages({
     "any.only": "Role must be either 'admin' or 'superAdmin'",
     "string.empty": "Role is required",

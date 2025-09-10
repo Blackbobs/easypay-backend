@@ -8,7 +8,9 @@ import { IUser } from "#interface/user.js";
 import Transaction from "#models/transaction.model.js";
 import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
+import { formatCurrency } from "#utils/format-currency";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
+import { failedMail, sendMail, sendReceipt } from "#utils/mailer";
 import { JwtPayload } from "#utils/token.js";
 import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto.js";
 import { FilterQuery } from "mongoose";
@@ -26,6 +28,22 @@ export const createTransaction = async (req: Request, res: Response) => {
       reference,
       status: "pending",
     });
+
+    const formattedAmount = formatCurrency(value.amount);
+
+    await sendMail(
+      value.email,
+      "Payment Received - EasyPay",
+      `
+        <h2>Hi ${value.fullName || "User"},</h2>
+        <p>Your payment of <b>${formattedAmount} </b> has been received.</p>
+        <p>Status: <b>Pending Confirmation</b></p>
+        <p>Reference: <b>${reference}</b></p>
+        <p>Once confirmed, we will send you your official receipt.</p>
+        <br/>
+        <p>Thanks,<br/>The EasyPay Team</p>
+      `,
+    );
 
     res.status(201).json({
       data: newTransaction,
@@ -210,12 +228,10 @@ export const getAdminSuccessfulTransactions = async (req: Request, res: Response
       });
     }
 
-    
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
-  
     const filter: FilterQuery<ITransaction> = { status: "successful" };
 
     switch (admin.dueType) {
@@ -237,12 +253,7 @@ export const getAdminSuccessfulTransactions = async (req: Request, res: Response
     }
 
     const [transactions, total] = await Promise.all([
-      Transaction.find(filter)
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit)
-        .select("email amount status dueType proofUrl createdAt")
-        .lean(),
+      Transaction.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit).select("email amount status dueType proofUrl createdAt").lean(),
       Transaction.countDocuments(filter),
     ]);
 
@@ -320,6 +331,13 @@ export const updateTransactionStatus = async (req: Request<UpdateTransactionPara
     }
 
     logger.info(`Transaction status updated to ${status}`);
+
+    if (status === "successful") {
+      await sendReceipt(transaction.email, transaction);
+      logger.info(`Receipt sent to ${transaction.email}`);
+    } else if (status === "failed") {
+      await failedMail(transaction.email, transaction);
+    }
     return res.status(200).json({
       data: transaction,
       message: `Transaction status updated to ${status}`,

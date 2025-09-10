@@ -1,5 +1,5 @@
 export interface UpdateTransactionBody {
-  status?: "failed" | "pending" | "success";
+  status?: "failed" | "pending" | "successful";
 }
 
 export interface UpdateTransactionParams {

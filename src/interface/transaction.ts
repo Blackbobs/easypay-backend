@@ -18,6 +18,7 @@ export interface ITransaction extends Document {
   paymentMethod: PaymentMethod;
   phoneNumber: string;
   proofUrl: string;
+  receiptName?: string;
   reference: string;
   status: Status;
   updatedAt: Date;
