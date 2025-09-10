@@ -48,7 +48,7 @@ export const transactionSchema = Joi.object({
   reference: Joi.string().messages({
     "any.required": "Reference is required",
   }),
-  status: Joi.string().valid("pending", "success", "failed").default("pending").messages({
+  status: Joi.string().valid("pending", "successful", "failed").default("pending").messages({
     "any.only": "Status must be 'pending', 'successful', or 'failed'",
   }),
 });

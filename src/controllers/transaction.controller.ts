@@ -50,16 +50,27 @@ export const createTransaction = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllTransactions = async (_req: Request, res: Response) => {
+export const getAllTransactions = async (req: Request, res: Response) => {
   logger.info("Fetch all transactions controller");
   try {
-    const transactions = await Transaction.find().exec();
-
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+    const [transactions, total] = await Promise.all([
+      Transaction.find().sort({ createdAt: -1 }).select("email amount status dueType proofUrl createdAt").skip(skip).limit(limit).lean(),
+      Transaction.countDocuments(),
+    ]);
     if (transactions.length === 0) {
       logger.warn("No transaction available");
       return res.status(200).json({
         data: [],
         message: "No transaction available",
+        meta: {
+          limit,
+          page,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
         success: false,
       });
     }
@@ -121,6 +132,157 @@ export const getRecentTransactions = async (req: Request, res: Response) => {
     }
     return res.status(500).json({
       message: "An error occured while trying to fetch  the recent transactions",
+      success: false,
+    });
+  }
+};
+
+export const getTransactionById = async (req: Request, res: Response) => {
+  logger.info("Get transaction by id controller");
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      logger.warn("Transaction ID required");
+      return res.status(400).json({
+        message: "Transaction ID required",
+        success: false,
+      });
+    }
+
+    const transaction = await Transaction.findById<ITransaction>(id).lean();
+
+    if (!transaction) {
+      logger.warn(`Transaction not found with ID: ${id}`);
+      return res.status(400).json({
+        message: "Transaction not found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      data: transaction,
+      message: "Transaction details fetched successfully",
+      success: true,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error("An error occured while trying to fetch transaction by id", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occured while trying to fetch transaction by id", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occured while trying to fetch transaction by id",
+      success: false,
+    });
+  }
+};
+
+export const getAdminSuccessfulTransactions = async (req: Request, res: Response) => {
+  logger.info("Get admin successful transactions controller");
+  try {
+    if (!req.user) {
+      logger.warn("Unauthorized access");
+      return res.status(401).json({
+        message: "Unauthorized",
+        success: false,
+      });
+    }
+
+    const id = (req.user as JwtPayload & { id: string }).id;
+
+    const admin = await User.findById<IUser>(id).lean<IUser>().exec();
+
+    if (!admin) {
+      return res.status(404).json({
+        message: "Admin not found",
+        success: false,
+      });
+    }
+
+    if (admin.role !== Role.admin) {
+      return res.status(403).json({
+        message: "Unauthorized to view transactions",
+        success: false,
+      });
+    }
+
+    
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+  
+    const filter: FilterQuery<ITransaction> = { status: "successful" };
+
+    switch (admin.dueType) {
+      case DueType.college:
+        filter.college = admin.college;
+        break;
+      case DueType.department:
+        filter.department = admin.department;
+        break;
+      case DueType.hostel:
+        filter.dueType = "hostel";
+        break;
+      case DueType.sug:
+        filter.dueType = "sug";
+        break;
+      default:
+        logger.error("Unsupported due type");
+        throw new Error("Unsupported due type");
+    }
+
+    const [transactions, total] = await Promise.all([
+      Transaction.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .select("email amount status dueType proofUrl createdAt")
+        .lean(),
+      Transaction.countDocuments(filter),
+    ]);
+
+    if (transactions.length === 0) {
+      logger.warn(`No successful transactions found for due type: ${admin.dueType}`);
+      return res.status(200).json({
+        data: [],
+        message: `No successful transactions found for due type: ${admin.dueType}`,
+        meta: {
+          limit,
+          page,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      data: transactions,
+      message: `Successful transactions fetched for due type: ${admin.dueType}`,
+      meta: {
+        limit,
+        page,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+      success: true,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while fetching admin successful transactions", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while fetching admin successful transactions", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occurred while fetching admin successful transactions",
       success: false,
     });
   }
