@@ -96,14 +96,14 @@ export const loginUser = async (req: Request, res: Response) => {
       httpOnly: true,
       maxAge: 15 * 60 * 1000, 
       sameSite: "none",       
-      secure: process.env.NODE_ENV === "production" && req.hostname !== "localhost",   
+      secure: false,   
     });
     
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, 
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production" && req.hostname !== "localhost",
+      secure: false,
     });
     await RefreshToken.create({
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
