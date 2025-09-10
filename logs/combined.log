@@ -107,3 +107,6 @@
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T16:31:52.526Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T17:00:13.647Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T17:04:02.035Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T22:55:00.147Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T23:03:25.582Z"}
+{"level":"info","message":"Create user controller","timestamp":"2025-09-10T23:05:04.599Z"}
