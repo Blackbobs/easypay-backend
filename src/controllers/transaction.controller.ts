@@ -8,7 +8,7 @@ import { IUser } from "#interface/user.js";
 import Transaction from "#models/transaction.model.js";
 import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
-import { formatCurrency } from "#utils/format-currency";
+import { formatCurrency } from "#utils/format-currency.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
 import { failedMail, sendMail, sendReceipt } from "#utils/mailer";
 import { JwtPayload } from "#utils/token.js";

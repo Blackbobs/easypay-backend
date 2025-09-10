@@ -1,4 +1,4 @@
-import { formatCurrency } from "./format-currency";
+import { formatCurrency } from "./format-currency.js";
 
 export const buildReceiptHtml = (payload: {
   amount: string;

@@ -1,4 +1,4 @@
-import { ITransaction } from "#interface/transaction";
+import { ITransaction } from "#interface/transaction.js";
 import nodemailer from "nodemailer";
 
 import { formatCurrency } from "./format-currency";
