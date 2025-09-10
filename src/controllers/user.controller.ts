@@ -92,12 +92,19 @@ export const loginUser = async (req: Request, res: Response) => {
     const payload = { id: user._id, role: user.role };
     const accessToken = generateAccessToken(payload);
     const refreshToken = generateRefreshToken(payload);
-
-    // Send the accessToken and the refreshToken through the http only cookie header
-
-    res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 900000 });
-    res.cookie("refreshToken", refreshToken, { httpOnly: true });
-
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      maxAge: 15 * 60 * 1000, 
+      sameSite: "none",       
+      secure: process.env.NODE_ENV === "production",   
+    });
+    
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000, 
+      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+    });
     await RefreshToken.create({
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
       token: refreshToken,

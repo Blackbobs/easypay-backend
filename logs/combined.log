@@ -40,3 +40,5 @@
 {"level":"warn","message":"Unauthorized access attempt - no token in cookies","timestamp":"2025-09-08T17:04:06.547Z"}
 {"level":"info","message":"Login user controller","timestamp":"2025-09-08T17:04:53.858Z"}
 {"level":"info","message":"Get admin transactions controller","timestamp":"2025-09-08T17:05:11.496Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T09:51:15.416Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T09:52:18.673Z"}
