@@ -10,7 +10,7 @@ import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
 import { formatCurrency } from "#utils/format-currency.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
-import { failedMail, sendMail, sendReceipt } from "#utils/mailer";
+import { failedMail, sendMail, sendReceipt } from "#utils/mailer.js";
 import { JwtPayload } from "#utils/token.js";
 import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto.js";
 import { FilterQuery } from "mongoose";
