@@ -8,11 +8,9 @@ import {
   verifyAccessToken,
   verifyRefreshToken,
 } from "#utils/token.js";
-import {
-  JsonWebTokenError,
-  NotBeforeError,
-  TokenExpiredError,
-} from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+
+const { JsonWebTokenError, NotBeforeError, TokenExpiredError } = jwt;
 
 export const authMiddleware = async (
   req: Request,
