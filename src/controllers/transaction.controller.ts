@@ -23,10 +23,31 @@ export const createTransaction = async (req: Request, res: Response) => {
     const deaprtmentCode = value.matricNumber.slice(0, 3) || "GEN";
     const reference = generatePaymentReference(deaprtmentCode);
 
+    const adminQuery: Record<string, string> = {
+      dueType: value.dueType,
+      role: Role.admin,
+    };
+
+    if (value.dueType === DueType.college) {
+      adminQuery.college = value.college;
+    } else if (value.dueType === DueType.department) {
+      adminQuery.department = value.department;
+    }
+    // For hostel and sug we match any admin with dueType 'hostel' or 'sug'
+
+    const admin = await User.findOne(adminQuery).lean<IUser>().exec();
+
+    if (!admin) {
+      logger.warn(`No admin matched for dueType=${value.dueType} (college=${value.college}, department=${value.department})`);
+    } else {
+      logger.info(`Matched admin ${String(admin._id)} for dueType=${value.dueType}`);
+    }
+
     const newTransaction = await Transaction.create({
       ...value,
       reference,
       status: "pending",
+      ...(admin?.receiptName ? { receiptName: admin.receiptName } : {}),
     });
 
     const formattedAmount = formatCurrency(value.amount);
