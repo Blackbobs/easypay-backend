@@ -64,7 +64,7 @@ export const createTransaction = async (req: Request, res: Response) => {
           
           <!-- Body -->
           <div style="padding: 24px; color: #333333; line-height: 1.6;">
-           
+            <h3 style="margin-top: 0;">Hi ${value.fullName || "User"},</h3>
             <p>We’re happy to let you know that we’ve <b>received your payment</b>.</p>
             
             <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 20px 0;">
