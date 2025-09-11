@@ -8,7 +8,6 @@ import { IUser } from "#interface/user.js";
 import Transaction from "#models/transaction.model.js";
 import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
-import { formatCurrency } from "#utils/format-currency.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
 import { failedMail, sendMail, sendReceipt } from "#utils/mailer.js";
 import { JwtPayload } from "#utils/token.js";
@@ -30,15 +29,13 @@ export const createTransaction = async (req: Request, res: Response) => {
 
     if (value.dueType === DueType.college) {
       adminQuery.college = value.college;
-    } else if (value.dueType === DueType.department) {
-      adminQuery.department = value.department;
     }
     // For hostel and sug we match any admin with dueType 'hostel' or 'sug'
 
     const admin = await User.findOne(adminQuery).lean<IUser>().exec();
 
     if (!admin) {
-      logger.warn(`No admin matched for dueType=${value.dueType} (college=${value.college}, department=${value.department})`);
+      logger.warn(`No admin matched for dueType=${value.dueType} (college=${value.college})`);
     } else {
       logger.info(`Matched admin ${String(admin._id)} for dueType=${value.dueType}`);
     }
@@ -50,15 +47,14 @@ export const createTransaction = async (req: Request, res: Response) => {
       ...(admin?.receiptName ? { receiptName: admin.receiptName } : {}),
     });
 
-    const formattedAmount = formatCurrency(value.amount);
+    // const formattedAmount = formatCurrency(value.amount);
 
     await sendMail(
       value.email,
       "Payment Received - EasyPay",
       `
         <h2>Hi ${value.fullName || "User"},</h2>
-        <p>Your payment of <b>${formattedAmount} </b> has been received.</p>
-        <p>Status: <b>Pending Confirmation</b></p>
+        <p>Status: <b>Your payment has been received</b></p>
         <p>Reference: <b>${reference}</b></p>
         <p>Once confirmed, we will send you your official receipt.</p>
         <br/>

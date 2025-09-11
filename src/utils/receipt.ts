@@ -1,10 +1,7 @@
-import { formatCurrency } from "./format-currency.js";
 
 export const buildReceiptHtml = (payload: {
-  amount: string;
   college?: string;
   date: string;
-  department?: string;
   dueType?: string;
   email?: string;
   fullName?: string;
@@ -12,7 +9,6 @@ export const buildReceiptHtml = (payload: {
   reference: string;
   status?: string;
 }) => {
-  const formattedAmount = formatCurrency(Number(payload.amount));
   return `
     <!doctype html>
     <html>
@@ -45,7 +41,6 @@ export const buildReceiptHtml = (payload: {
                         <strong>Date: </strong> <span>${payload.date}</span>
                       </td>
                       <td style="text-align:right; padding-bottom:12px;">
-                        <strong style="display:block; font-size:16px;">${formattedAmount}</strong>
                         <small style="color:#6b7280; display:block;">Status: ${payload.status ?? "Successful"}</small>
                       </td>
                     </tr>
@@ -74,7 +69,7 @@ export const buildReceiptHtml = (payload: {
                           </tr>
                           <tr>
                             <td style="padding:8px 6px; border:1px solid #eef2f7; font-size:13px;">Department</td>
-                            <td style="padding:8px 6px; border:1px solid #eef2f7; font-size:13px;">${payload.department ?? "-"}</td>
+            
                           </tr>
                         </table>
                       </td>

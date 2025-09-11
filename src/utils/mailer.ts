@@ -1,7 +1,6 @@
 import { ITransaction } from "#interface/transaction.js";
 import nodemailer from "nodemailer";
 
-import { formatCurrency } from "./format-currency.js";
 import { buildReceiptHtml } from "./receipt.js";
 
 const transporter = nodemailer.createTransport({
@@ -25,7 +24,6 @@ export const sendMail = async (to: string, subject: string, html: string) => {
 
 export const sendReceipt = async (userEmail: string, transaction: ITransaction) => {
   const receiptData = {
-    amount: formatCurrency(transaction.amount), // convert number → formatted string
     college: transaction.college,
     date:new Date(transaction.createdAt).toLocaleDateString("en-NG", {
       day: "numeric",
@@ -33,7 +31,6 @@ export const sendReceipt = async (userEmail: string, transaction: ITransaction) 
       year: "numeric",
         })
         ,
-        department: transaction.department,
         dueType: transaction.dueType,
         email: userEmail,
         fullName: transaction.fullName,
@@ -57,14 +54,12 @@ export const failedMail = async (
   transaction: ITransaction
 ) => {
   const failedData = {
-    amount: formatCurrency(transaction.amount),
     college: transaction.college,
     date: new Date(transaction.createdAt).toLocaleDateString("en-NG", {
       day: "numeric",
       month: "long",
       year: "numeric",
     }),
-    department: transaction.department,
     dueType: transaction.dueType,
     email: userEmail,
     fullName: transaction.fullName,
@@ -79,10 +74,8 @@ export const failedMail = async (
       <p>Hello ${failedData.fullName},</p>
       <p>Unfortunately, your payment could not be processed.</p>
       <p><strong>Reference:</strong> ${failedData.reference}</p>
-      <p><strong>Amount:</strong> ${failedData.amount}</p>
       <p><strong>Due Type:</strong> ${failedData.dueType}</p>
       <p><strong>College:</strong> ${failedData.college}</p>
-      <p><strong>Department:</strong> ${failedData.department}</p>
       <p><strong>Date:</strong> ${failedData.date}</p>
       <p>If this issue persists, please contact support.</p>
     </div>
