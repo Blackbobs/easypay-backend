@@ -86,7 +86,7 @@ export const createTransaction = async (req: Request, res: Response) => {
           
           <!-- Footer -->
           <div style="background: #f3f4f6; padding: 12px; text-align: center; font-size: 12px; color: #666;">
-            © ${new Date().getFullYear()} EasyPay. All rights reserved.
+            © ${String(new Date().getFullYear())} EasyPay. All rights reserved.
           </div>
         </div>
       </div>
