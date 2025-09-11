@@ -110,3 +110,17 @@
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T22:55:00.147Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T23:03:25.582Z"}
 {"level":"info","message":"Create user controller","timestamp":"2025-09-10T23:05:04.599Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-10T23:47:36.225Z"}
+{"level":"info","message":"Create user controller","timestamp":"2025-09-10T23:50:14.989Z"}
+{"level":"info","message":"Create user controller","timestamp":"2025-09-10T23:51:41.603Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-10T23:58:25.293Z"}
+{"level":"error","message":"Unable to create a transaction Matric number is required","stack":"ValidationError: Matric number is required","timestamp":"2025-09-10T23:58:25.298Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-10T23:58:46.855Z"}
+{"level":"error","message":"Unable to create a transaction Phone number is required","stack":"ValidationError: Phone number is required","timestamp":"2025-09-10T23:58:46.859Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-10T23:59:05.650Z"}
+{"level":"info","message":"Matched admin 68c20f0eae5de7b5c1420f98 for dueType=hostel","timestamp":"2025-09-10T23:59:06.030Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-11T00:12:18.729Z"}
+{"level":"info","message":"Matched admin 68c20f0eae5de7b5c1420f98 for dueType=hostel","timestamp":"2025-09-11T00:12:18.879Z"}
+{"level":"error","message":"Unable to create a transaction Greeting never received","stack":"Error: Greeting never received\n    at SMTPConnection._formatError (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:809:19)\n    at SMTPConnection._onError (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:795:20)\n    at Timeout.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:729:22)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-11T00:12:49.508Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-09-11T00:13:35.886Z"}
+{"level":"info","message":"Matched admin 68c20f0eae5de7b5c1420f98 for dueType=hostel","timestamp":"2025-09-11T00:13:36.104Z"}
