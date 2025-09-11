@@ -1,19 +1,11 @@
 import Joi from "joi";
 
 export const transactionSchema = Joi.object({
-  amount: Joi.number().required().messages({
-    "any.required": "Amount is required",
-    "number.base": "Amount must be a number",
-  }),
-  bank: Joi.string().required().messages({
-    "any.required": "Bank is required",
-  }),
+  amount: Joi.number(),
   college: Joi.string().required().messages({
     "any.required": "College is required",
   }),
-  department: Joi.string().required().messages({
-    "any.required": "Department is required",
-  }),
+  department: Joi.string(),
   dueType: Joi.string().required().messages({
     "string.empty": "due type is required",
   }),
@@ -25,6 +17,7 @@ export const transactionSchema = Joi.object({
     "any.required": "Full name is required",
     "string.base": "Full name must be a string",
   }),
+  hostel: Joi.string(),
   matricNumber: Joi.string().required().messages({
     "any.required": "Matric number is required",
     "string.base": "Matric number must be a string",
@@ -49,6 +42,7 @@ export const transactionSchema = Joi.object({
   reference: Joi.string().messages({
     "any.required": "Reference is required",
   }),
+  roomNumber: Joi.string(),
   status: Joi.string().valid("pending", "successful", "failed").default("pending").messages({
     "any.only": "Status must be 'pending', 'successful', or 'failed'",
   }),
