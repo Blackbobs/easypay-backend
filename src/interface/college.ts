@@ -10,4 +10,5 @@ export enum College {
   COLPHYS = "COLPHYS",
   COLPLANT = "COLPLANT",
   COLVET = "COLVET",
+  FUMMSA = "FUMMSA"
 }
