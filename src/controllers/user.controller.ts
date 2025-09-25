@@ -69,9 +69,11 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     const value = (await loginSchema.validateAsync(req.body)) as loginDto;
 
+   
+
     const user = await User.findOne({ email: value.email });
 
-    // Check the type of error code to return for invalid credentials
+    
     if (!user) {
       logger.warn(`login attempt failed: user not found for ${value.email}`);
       return res.status(404).json({
@@ -80,11 +82,11 @@ export const loginUser = async (req: Request, res: Response) => {
       });
     }
 
-    // Change this to Argon2 later
+  
     const isMatch = await argon2.verify(user.password, value.password);
     if (!isMatch) {
-      logger.warn(`login attempt failed: user not found for ${value.email}`);
-      return res.status(404).json({
+      logger.warn(`login attempt failed: invalid credentials for ${value.email}`);
+      return res.status(401).json({
         message: "Invalid credentials",
         success: false,
       });
@@ -96,14 +98,14 @@ export const loginUser = async (req: Request, res: Response) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       maxAge: 15 * 60 * 1000, 
-      sameSite: "none",       
+      sameSite: "lax",       
       secure: process.env.NODE_ENV ==="production",   
     });
     
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, 
-      sameSite: "none",
+      sameSite: "lax",
       secure: process.env.NODE_ENV ==="production",
     });
     await RefreshToken.create({

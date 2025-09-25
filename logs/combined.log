@@ -124,3 +124,70 @@
 {"level":"error","message":"Unable to create a transaction Greeting never received","stack":"Error: Greeting never received\n    at SMTPConnection._formatError (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:809:19)\n    at SMTPConnection._onError (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:795:20)\n    at Timeout.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/nodemailer/lib/smtp-connection/index.js:729:22)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-11T00:12:49.508Z"}
 {"level":"info","message":"Create transaction controller","timestamp":"2025-09-11T00:13:35.886Z"}
 {"level":"info","message":"Matched admin 68c20f0eae5de7b5c1420f98 for dueType=hostel","timestamp":"2025-09-11T00:13:36.104Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T14:02:20.658Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:19:09.216Z"}
+{"level":"warn","message":"login attempt failed: user not found for ayodejiayodele350@gmail.com","timestamp":"2025-09-18T15:19:14.848Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:42:43.918Z"}
+{"level":"warn","message":"login attempt failed: user not found for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:42:47.062Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:44:29.753Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:46:58.428Z"}
+{"level":"warn","message":"login attempt failed: user not found for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:46:59.333Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:47:25.203Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:47:38.517Z"}
+{"level":"warn","message":"login attempt failed: user not found for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:47:39.287Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:51:50.000Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:52:58.835Z"}
+{"level":"warn","message":"login attempt failed: user not found for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:52:59.860Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:55:01.867Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:55:29.205Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:55:42.274Z"}
+{"level":"warn","message":"login attempt failed: user not found for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:55:43.542Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T15:56:57.379Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T15:57:03.782Z"}
+{"level":"warn","message":"login attempt failed: invalid credentials for femalehallofresidence@gmail.com","timestamp":"2025-09-18T15:57:05.049Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T16:00:27.075Z"}
+{"level":"error","message":"Unable to login user Password must be 8-30 chars and include only letters, numbers, and @.!#$%^&*","stack":"ValidationError: Password must be 8-30 chars and include only letters, numbers, and @.!#$%^&*","timestamp":"2025-09-18T16:00:27.096Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-18T16:00:47.375Z"}
+{"level":"warn","message":"login attempt failed: invalid credentials for femalehallofresidence@gmail.com","timestamp":"2025-09-18T16:00:48.227Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T16:15:48.487Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T16:31:41.211Z"}
+{"level":"error","message":"❌ Redis error: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:634:28)\n    at Socket.emit (node:events:520:28)\n    at Socket._onTimeout (node:net:591:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-18T16:46:25.820Z"}
+{"level":"error","message":"❌ Redis error: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:634:28)\n    at Socket.emit (node:events:520:28)\n    at Socket._onTimeout (node:net:591:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-18T16:46:38.428Z"}
+{"level":"error","message":"❌ Redis error: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:634:28)\n    at Socket.emit (node:events:520:28)\n    at Socket._onTimeout (node:net:591:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-18T16:46:48.549Z"}
+{"level":"error","message":"❌ Redis error: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:634:28)\n    at Socket.emit (node:events:520:28)\n    at Socket._onTimeout (node:net:591:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-18T16:47:05.361Z"}
+{"level":"error","message":"❌ Redis error: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/home/black-bobs/Desktop/Work/easepay-backend/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:634:28)\n    at Socket.emit (node:events:520:28)\n    at Socket._onTimeout (node:net:591:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)","timestamp":"2025-09-18T16:47:17.031Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-18T16:47:24.240Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-19T06:52:49.964Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-19T06:56:03.884Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-19T06:57:06.323Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-19T06:58:47.394Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-09-19T07:13:46.133Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:13:50.973Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:13:51.231Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-19T07:20:39.404Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-19T07:23:48.524Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:24:15.340Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:24:15.379Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-19T07:36:51.820Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:37:43.413Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:37:43.440Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:43:15.627Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:43:15.801Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:43:34.154Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:43:34.242Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:43:53.714Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:43:53.768Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:47:00.154Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:47:00.470Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T07:47:23.958Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T07:47:24.022Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-19T09:21:36.853Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-19T09:21:36.865Z"}
+{"level":"error","message":"❌ Redis error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","timestamp":"2025-09-19T09:36:58.208Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-19T09:36:58.698Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-22T11:39:34.716Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-22T11:39:34.860Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-22T12:07:20.711Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-22T12:10:14.797Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-22T12:10:14.816Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-22T12:11:55.836Z"}
