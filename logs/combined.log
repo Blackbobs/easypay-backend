@@ -812,3 +812,7 @@
 {"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T14:18:56.770Z"}
 {"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T14:19:01.341Z"}
 {"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T14:19:17.353Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:33:50.199Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:35:56.083Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:36:00.062Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:36:15.238Z"}
