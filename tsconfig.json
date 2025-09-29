@@ -13,8 +13,7 @@
       "#utils/*": ["utils/*"],
       "#interface/*": ["interface/*"]
     },
-    "lib": ["ES2022"],
-    "module": "CommonJS",             
+    "lib": ["ES2022"],            
     "moduleResolution": "node",
     "target": "ES2022",
     "types": ["node"],                 
