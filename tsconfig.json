@@ -13,15 +13,13 @@
       "#utils/*": ["utils/*"],
       "#interface/*": ["interface/*"]
     },
-    "lib": ["ES2022"], 
-    "module": "nodenext",           
-    "moduleResolution": "nodenext",
-    "target": "ES2022",
-    "types": ["node"],                 
+    "lib": ["es2020"],
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "target": "es2022",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"]

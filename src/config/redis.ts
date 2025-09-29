@@ -2,6 +2,7 @@ import Redis from "ioredis";
 
 import logger from "./logger.js";
 
+
 const redis = new Redis({
   host: process.env.REDIS_HOST ?? "127.0.0.1",
   password: process.env.REDIS_PASSWORD ?? undefined,
@@ -13,7 +14,7 @@ redis.on("connect", () => {
   console.log("✅ Redis connected");
 });
 
-redis.on("error", (err) => {
+redis.on("error", (err: Error) => {
   logger.error("❌ Redis error:", { message: err.message, stack: err.stack });
   console.error("❌ Redis error:", err);
 });
