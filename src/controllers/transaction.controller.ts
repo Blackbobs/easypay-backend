@@ -90,9 +90,8 @@ export const createTransaction = async (req: Request, res: Response) => {
           </div>
         </div>
       </div>
-      `
+      `,
     );
-    
 
     res.status(201).json({
       data: newTransaction,
@@ -145,6 +144,12 @@ export const getAllTransactions = async (req: Request, res: Response) => {
     return res.status(200).json({
       data: transactions,
       message: "Transactions fetched successfully",
+      meta: {
+        limit,
+        page,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
       success: true,
     });
   } catch (error) {
