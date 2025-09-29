@@ -6,7 +6,7 @@ import RefreshToken from "#models/refresh-token.model.js";
 import User from "#models/user.model.js";
 import { loginSchema, userSchema } from "#schemas/user.schema.js";
 import { generateAccessToken, generateRefreshToken, verifyAccessToken } from "#utils/token.js";
-import argon2 from "argon2"
+import argon2 from "argon2";
 import { ForgetPasswordDto } from "dto/forget-password.js";
 import { ResetPasswordDto } from "dto/reset-password.js";
 import { loginDto, userDto } from "dto/user.dto.js";
@@ -58,7 +58,7 @@ export const createUser = async (req: Request, res: Response) => {
       logger.error("Unable to create a new account", { error: String(error) });
     }
     return res.status(500).json({
-      message: "Unable to create a new user",
+      message: `Unable to create a new user:  ${error}`,
       success: false,
     });
   }
@@ -69,11 +69,8 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     const value = (await loginSchema.validateAsync(req.body)) as loginDto;
 
-   
-
     const user = await User.findOne({ email: value.email });
 
-    
     if (!user) {
       logger.warn(`login attempt failed: user not found for ${value.email}`);
       return res.status(404).json({
@@ -82,7 +79,6 @@ export const loginUser = async (req: Request, res: Response) => {
       });
     }
 
-  
     const isMatch = await argon2.verify(user.password, value.password);
     if (!isMatch) {
       logger.warn(`login attempt failed: invalid credentials for ${value.email}`);
@@ -97,16 +93,16 @@ export const loginUser = async (req: Request, res: Response) => {
     const refreshToken = generateRefreshToken(payload);
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      maxAge: 15 * 60 * 1000, 
-      sameSite: "lax",       
-      secure: process.env.NODE_ENV ==="production",   
+      maxAge: 15 * 60 * 1000,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
     });
-    
+
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
+      maxAge: 7 * 24 * 60 * 60 * 1000,
       sameSite: "lax",
-      secure: process.env.NODE_ENV ==="production",
+      secure: process.env.NODE_ENV === "production",
     });
     await RefreshToken.create({
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
@@ -154,13 +150,9 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       });
     }
 
-
     const decoded = verifyAccessToken(accessToken) as { id: Types.ObjectId; role: string };
 
-   
-
-    
-    const user = await User.findById(decoded.id).select("-password"); 
+    const user = await User.findById(decoded.id).select("-password");
 
     if (!user) {
       return res.status(404).json({
@@ -196,7 +188,6 @@ export const getCurrentUser = async (req: Request, res: Response) => {
   }
 };
 
-
 export const forgetPassword = async (req: Request<object, object, ForgetPasswordDto>, res: Response) => {
   logger.info("Forget password controller");
   try {
@@ -209,10 +200,9 @@ export const forgetPassword = async (req: Request<object, object, ForgetPassword
     }
     // Attach the email to the otp
 
-    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    await redis.set(`otp:${email}`, otp, "EX",60 * 5)
-    
+    await redis.set(`otp:${email}`, otp, "EX", 60 * 5);
 
     return res.status(200).json({
       message: `OTP sent to ${email}`,
@@ -240,21 +230,19 @@ export const resetPassword = async (req: Request<object, object, ResetPasswordDt
   try {
     const { email, newPassword, otp } = req.body;
 
-    const storedOtp = await redis.get(`otp:${email}`)
+    const storedOtp = await redis.get(`otp:${email}`);
 
-    if(!storedOtp || storedOtp !== otp){
-      logger.warn("Invalid or expired OTP")
+    if (!storedOtp || storedOtp !== otp) {
+      logger.warn("Invalid or expired OTP");
       return res.status(400).json({
         message: "Invalid or expired OTP",
-        success: false
-      })
+        success: false,
+      });
     }
-    const hashedPassword = await argon2.hash(newPassword)
+    const hashedPassword = await argon2.hash(newPassword);
 
-    await User.findOneAndUpdate({email}, {password: hashedPassword})
-    await redis.del(`otp:${email}`)
-
-   
+    await User.findOneAndUpdate({ email }, { password: hashedPassword });
+    await redis.del(`otp:${email}`);
 
     return res.status(200).json({
       message: "Password reset successfully",
@@ -308,10 +296,7 @@ export const logoutController = async (req: Request, res: Response) => {
     const refreshToken = req.cookies.refreshToken as string | undefined;
 
     if (refreshToken) {
-      await RefreshToken.findOneAndUpdate(
-        { token: refreshToken },
-        { revoked: true }
-      );
+      await RefreshToken.findOneAndUpdate({ token: refreshToken }, { revoked: true });
     }
 
     res.clearCookie("accessToken", {
@@ -328,13 +313,13 @@ export const logoutController = async (req: Request, res: Response) => {
 
     return res.json({ message: "Logged out successfully" });
   } catch (error: unknown) {
-    if(error instanceof Error){
+    if (error instanceof Error) {
       logger.error("An error occured while trying to logout", {
         message: error.message,
-        stack: error.stack
-      })
-    }else{
-      logger.error("An error occured while trying to logout", {error: String(error)})
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occured while trying to logout", { error: String(error) });
     }
     return res.status(500).json({ message: "Failed to log out" });
   }
