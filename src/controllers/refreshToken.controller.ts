@@ -44,7 +44,7 @@ export const refreshTokenController = async (req: Request, res: Response) => {
       httpOnly: true,
       maxAge: 15 * 60 * 1000,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     return res.json({ accessToken: newAccessToken });

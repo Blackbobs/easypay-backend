@@ -95,14 +95,14 @@ export const loginUser = async (req: Request, res: Response) => {
       httpOnly: true,
       maxAge: 15 * 60 * 1000,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
     await RefreshToken.create({
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
@@ -302,13 +302,13 @@ export const logoutController = async (req: Request, res: Response) => {
     res.clearCookie("accessToken", {
       httpOnly: true,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     res.clearCookie("refreshToken", {
       httpOnly: true,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     return res.json({ message: "Logged out successfully" });
