@@ -816,3 +816,43 @@
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:35:56.083Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:36:00.062Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:36:15.238Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-09-29T15:39:54.352Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-09-29T15:39:54.356Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:19.942Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:31.069Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:34.900Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:35.669Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:38.328Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:42.751Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:43.386Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:43.832Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:43.960Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:44.114Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:44.303Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:45.096Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:40:46.838Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:12.808Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:16.634Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:20.055Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:22.371Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:24.991Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:26.655Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:29.795Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:32.166Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:40.584Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:44.189Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:49.572Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:41:59.223Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:42:01.242Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:42:04.632Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:42:53.418Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:42:58.586Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:43:01.838Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:43:33.573Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:43:38.244Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:43:45.051Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-09-29T15:43:53.426Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:44:08.781Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-09-29T15:44:52.452Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:45:58.698Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-09-29T15:46:14.467Z"}

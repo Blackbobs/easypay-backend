@@ -9,7 +9,7 @@ import Transaction from "#models/transaction.model.js";
 import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
-import { failedMail, sendMail, sendReceipt } from "#utils/mailer.js";
+import { failedMail, sendReceipt } from "#utils/mailer.js";
 import { JwtPayload } from "#utils/token.js";
 import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto.js";
 import { FilterQuery } from "mongoose";
@@ -49,49 +49,49 @@ export const createTransaction = async (req: Request, res: Response) => {
 
     // const formattedAmount = formatCurrency(value.amount);
 
-    await sendMail(
-      value.email,
-      "✅ Payment Received - EasyPay",
-      `
-      <div style="font-family: Arial, sans-serif; background-color: #f9fafb; padding: 20px;">
-        <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+    // await sendMail(
+    //   value.email,
+    //   "✅ Payment Received - EasyPay",
+    //   `
+    //   <div style="font-family: Arial, sans-serif; background-color: #f9fafb; padding: 20px;">
+    //     <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
           
-          <!-- Header -->
-          <div style="background: #4f46e5; color: #ffffff; padding: 16px; text-align: center;">
-            <h2 style="margin: 0;">EasyPay</h2>
-            <p style="margin: 0; font-size: 14px;">Payment Confirmation</p>
-          </div>
+    //       <!-- Header -->
+    //       <div style="background: #4f46e5; color: #ffffff; padding: 16px; text-align: center;">
+    //         <h2 style="margin: 0;">EasyPay</h2>
+    //         <p style="margin: 0; font-size: 14px;">Payment Confirmation</p>
+    //       </div>
           
-          <!-- Body -->
-          <div style="padding: 24px; color: #333333; line-height: 1.6;">
-            <h3 style="margin-top: 0;">Hi ${value.fullName || "User"},</h3>
-            <p>We’re happy to let you know that we’ve <b>received your payment</b>.</p>
+    //       <!-- Body -->
+    //       <div style="padding: 24px; color: #333333; line-height: 1.6;">
+    //         <h3 style="margin-top: 0;">Hi ${value.fullName || "User"},</h3>
+    //         <p>We’re happy to let you know that we’ve <b>received your payment</b>.</p>
             
-            <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0;"><b>Status:</b> ✅ Payment Received</p>
-              <p style="margin: 0;"><b>Reference:</b> ${reference}</p>
-            </div>
+    //         <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 20px 0;">
+    //           <p style="margin: 0;"><b>Status:</b> ✅ Payment Received</p>
+    //           <p style="margin: 0;"><b>Reference:</b> ${reference}</p>
+    //         </div>
     
-            <p>Once confirmed, we’ll send your official receipt. Please keep the reference for your records.</p>
+    //         <p>Once confirmed, we’ll send your official receipt. Please keep the reference for your records.</p>
     
-            <!-- QR Code -->
-            <div style="text-align: center; margin-top: 20px;">
-              <p style="font-size: 14px; color: #555;">Scan this QR code to verify your transaction:</p>
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reference}" 
-                   alt="QR Code for Payment Reference" style="margin-top: 10px;" />
-            </div>
+    //         <!-- QR Code -->
+    //         <div style="text-align: center; margin-top: 20px;">
+    //           <p style="font-size: 14px; color: #555;">Scan this QR code to verify your transaction:</p>
+    //           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reference}" 
+    //                alt="QR Code for Payment Reference" style="margin-top: 10px;" />
+    //         </div>
     
-            <p style="margin-top: 24px;">Thanks for using <b>EasyPay</b> 🎉</p>
-          </div>
+    //         <p style="margin-top: 24px;">Thanks for using <b>EasyPay</b> 🎉</p>
+    //       </div>
           
-          <!-- Footer -->
-          <div style="background: #f3f4f6; padding: 12px; text-align: center; font-size: 12px; color: #666;">
-            © ${String(new Date().getFullYear())} EasyPay. All rights reserved.
-          </div>
-        </div>
-      </div>
-      `,
-    );
+    //       <!-- Footer -->
+    //       <div style="background: #f3f4f6; padding: 12px; text-align: center; font-size: 12px; color: #666;">
+    //         © ${String(new Date().getFullYear())} EasyPay. All rights reserved.
+    //       </div>
+    //     </div>
+    //   </div>
+    //   `,
+    // );
 
     res.status(201).json({
       data: newTransaction,
