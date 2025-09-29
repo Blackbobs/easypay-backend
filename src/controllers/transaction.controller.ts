@@ -9,7 +9,7 @@ import Transaction from "#models/transaction.model.js";
 import User from "#models/user.model.js";
 import { transactionSchema } from "#schemas/transaction.schema.js";
 import generatePaymentReference from "#utils/generate-payment-reference.js";
-import { failedMail, sendReceipt } from "#utils/mailer.js";
+// import { failedMail, sendReceipt } from "#utils/mailer.js";
 import { JwtPayload } from "#utils/token.js";
 import { UpdateTransactionBody, UpdateTransactionParams } from "dto/transaction.dto.js";
 import { FilterQuery } from "mongoose";
@@ -386,12 +386,12 @@ export const updateTransactionStatus = async (req: Request<UpdateTransactionPara
 
     logger.info(`Transaction status updated to ${status}`);
 
-    if (status === "successful") {
-      await sendReceipt(transaction.email, transaction);
-      logger.info(`Receipt sent to ${transaction.email}`);
-    } else if (status === "failed") {
-      await failedMail(transaction.email, transaction);
-    }
+    // if (status === "successful") {
+    //   await sendReceipt(transaction.email, transaction);
+    //   logger.info(`Receipt sent to ${transaction.email}`);
+    // } else if (status === "failed") {
+    //   await failedMail(transaction.email, transaction);
+    // }
     return res.status(200).json({
       data: transaction,
       message: `Transaction status updated to ${status}`,
