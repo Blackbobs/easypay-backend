@@ -22,7 +22,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    origin: ["http://localhost:3000", "https://ease-pay-chi.vercel.app"],
+    origin: ["http://localhost:3000", "https://ease-pay-chi.vercel.app", "https://easypay-dashboard.vercel.app/"],
   }),
 );
 
