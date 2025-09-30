@@ -18,6 +18,7 @@ export const transactionSchema = Joi.object({
     "string.base": "Full name must be a string",
   }),
   hostel: Joi.string(),
+  level: Joi.string(),
   matricNumber: Joi.string().required().messages({
     "any.required": "Matric number is required",
     "string.base": "Matric number must be a string",
@@ -46,4 +47,5 @@ export const transactionSchema = Joi.object({
   status: Joi.string().valid("pending", "successful", "failed").default("pending").messages({
     "any.only": "Status must be 'pending', 'successful', or 'failed'",
   }),
+  studentType: Joi.string(),
 });
