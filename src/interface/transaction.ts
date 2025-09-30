@@ -14,6 +14,7 @@ export interface ITransaction extends Document {
   email: string;
   fullName: string;
   hostel?: string;
+  level?: string;
   matricNumber: string;
   paymentMethod: PaymentMethod;
   phoneNumber: string;
@@ -22,5 +23,6 @@ export interface ITransaction extends Document {
   reference: string;
   roomNumber?: string;
   status: Status;
+  studentType?: string;
   updatedAt: Date;
 }

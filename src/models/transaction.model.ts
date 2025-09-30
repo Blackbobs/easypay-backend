@@ -13,6 +13,7 @@ const TransactionSchema = new Schema<ITransaction>(
     email: { required: true, type: String },
     fullName: { required: true, type: String },
     hostel: {type: String},
+    level: {type: String},
     matricNumber: { required: true, type: String },
     paymentMethod: {
       default: PaymentMethod.bank_transfer,
@@ -30,6 +31,7 @@ const TransactionSchema = new Schema<ITransaction>(
       enum: Status,
       type: String,
     },
+    studentType: {type: String}
   },
   { timestamps: true },
 );
