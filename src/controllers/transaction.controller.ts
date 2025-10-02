@@ -527,3 +527,51 @@ export const getAdminTransactions = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const deleteTransaction = async (req: Request, res: Response) => {
+  logger.info("Delete transaction controller");
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      logger.warn("Transaction ID is required");
+      return res.status(400).json({
+        message: "Transaction ID is required",
+        success: false,
+      });
+    }
+
+    const transaction = await Transaction.findByIdAndDelete(id);
+
+    if (!transaction) {
+      logger.warn(`Transaction not found with ID: ${id}`);
+      return res.status(404).json({
+        message: "Transaction not found",
+        success: false,
+      });
+    }
+
+    logger.info(`Transaction deleted successfully with ID: ${id}`);
+    
+    return res.status(200).json({
+      message: "Transaction deleted successfully",
+      success: true,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while trying to delete transaction", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while trying to delete transaction", { 
+        error: String(error) 
+      });
+    }
+    
+    return res.status(500).json({
+      message: "An error occurred while trying to delete transaction",
+      success: false,
+    });
+  }
+};

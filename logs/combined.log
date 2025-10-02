@@ -972,3 +972,45 @@
 {"level":"info","message":"Update transaction status controller","timestamp":"2025-09-29T17:48:54.797Z"}
 {"level":"info","message":"Transaction status updated to successful","timestamp":"2025-09-29T17:48:54.938Z"}
 {"level":"info","message":"Receipt sent to ayodejiayodele350@gmail.com","timestamp":"2025-09-29T17:48:57.953Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T04:09:33.774Z"}
+{"level":"info","message":"Create transaction controller","timestamp":"2025-10-02T04:10:29.549Z"}
+{"level":"info","message":"Matched admin 68c20f0eae5de7b5c1420f98 for dueType=hostel","timestamp":"2025-10-02T04:10:29.889Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T04:29:19.889Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-02T04:30:35.989Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-02T04:30:36.055Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T04:31:13.030Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:31:19.907Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:31:55.314Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:32:08.929Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:37:24.523Z"}
+{"level":"info","message":"Update transaction status controller","timestamp":"2025-10-02T04:44:37.606Z"}
+{"level":"info","message":"Transaction status updated to successful","timestamp":"2025-10-02T04:44:37.797Z"}
+{"level":"info","message":"Update transaction status controller","timestamp":"2025-10-02T04:48:46.589Z"}
+{"level":"info","message":"Transaction status updated to successful","timestamp":"2025-10-02T04:48:46.774Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T04:50:00.239Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:50:10.445Z"}
+{"level":"info","message":"Update transaction status controller","timestamp":"2025-10-02T04:50:14.154Z"}
+{"level":"info","message":"Transaction status updated to successful","timestamp":"2025-10-02T04:50:14.379Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:50:14.388Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T04:51:29.692Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T17:08:13.591Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T17:08:38.577Z"}
+{"level":"info","message":"Delete transaction controller","timestamp":"2025-10-02T17:09:04.841Z"}
+{"level":"info","message":"Transaction deleted successfully with ID: 68db0c7dbe9b4e7527766cc4","timestamp":"2025-10-02T17:09:04.995Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T17:09:05.001Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T17:09:19.342Z"}
+{"level":"info","message":"Delete transaction controller","timestamp":"2025-10-02T17:09:57.342Z"}
+{"level":"info","message":"Transaction deleted successfully with ID: 68daebe3afbe2d11090dc11e","timestamp":"2025-10-02T17:09:57.564Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T17:09:57.575Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T17:10:49.182Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T17:22:24.738Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T17:22:26.312Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-02T17:22:38.658Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T17:36:26.942Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-02T17:36:26.947Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-02T17:37:13.061Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-02T17:37:13.069Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-02T17:37:25.848Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-02T17:37:25.855Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-02T17:37:36.068Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-02T17:37:36.074Z"}

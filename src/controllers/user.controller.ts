@@ -58,7 +58,7 @@ export const createUser = async (req: Request, res: Response) => {
       logger.error("Unable to create a new account", { error: String(error) });
     }
     return res.status(500).json({
-      message: `Unable to create a new user:  ${error}`,
+      message: `Unable to create a new user`,
       success: false,
     });
   }
@@ -116,6 +116,7 @@ export const loginUser = async (req: Request, res: Response) => {
         department: user.department,
         email: user.email,
         id: user._id,
+        role: user.role,
         username: user.username,
       },
       message: "User logged in successfully",
@@ -167,6 +168,7 @@ export const getCurrentUser = async (req: Request, res: Response) => {
         department: user.department,
         email: user.email,
         id: user._id,
+        role: user.role,
         username: user.username,
       },
       messsage: "Current logged in user fetched successfully",
