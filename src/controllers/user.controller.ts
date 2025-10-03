@@ -301,19 +301,27 @@ export const logoutController = async (req: Request, res: Response) => {
       await RefreshToken.findOneAndUpdate({ token: refreshToken }, { revoked: true });
     }
 
+    // Clear cookies with explicit options
     res.clearCookie("accessToken", {
+      domain: "https://easypay-dashboard.vercel.app", // Add your domain in production
       httpOnly: true,
+      path: "/",
       sameSite: "none",
       secure: true,
     });
 
     res.clearCookie("refreshToken", {
+      domain: "https://easypay-dashboard.vercel.app",
       httpOnly: true,
+      path: "/",
       sameSite: "none",
       secure: true,
     });
 
-    return res.json({ message: "Logged out successfully" });
+    return res.status(200).json({
+      message: "Logged out successfully",
+      success: true,
+    });
   } catch (error: unknown) {
     if (error instanceof Error) {
       logger.error("An error occured while trying to logout", {
@@ -323,6 +331,9 @@ export const logoutController = async (req: Request, res: Response) => {
     } else {
       logger.error("An error occured while trying to logout", { error: String(error) });
     }
-    return res.status(500).json({ message: "Failed to log out" });
+    return res.status(500).json({
+      message: "Failed to log out",
+      success: false,
+    });
   }
 };
