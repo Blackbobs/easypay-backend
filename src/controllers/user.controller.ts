@@ -303,7 +303,7 @@ export const logoutController = async (req: Request, res: Response) => {
 
     // Clear cookies with explicit options
     res.clearCookie("accessToken", {
-      domain: "https://easypay-dashboard.vercel.app", // Add your domain in production
+      domain: "https://easypay-backend-z1yc.onrender.com", 
       httpOnly: true,
       path: "/",
       sameSite: "none",
@@ -311,7 +311,7 @@ export const logoutController = async (req: Request, res: Response) => {
     });
 
     res.clearCookie("refreshToken", {
-      domain: "https://easypay-dashboard.vercel.app",
+      domain: "https://easypay-backend-z1yc.onrender.com",
       httpOnly: true,
       path: "/",
       sameSite: "none",
