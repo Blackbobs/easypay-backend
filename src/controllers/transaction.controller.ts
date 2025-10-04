@@ -55,35 +55,35 @@ export const createTransaction = async (req: Request, res: Response) => {
     //   `
     //   <div style="font-family: Arial, sans-serif; background-color: #f9fafb; padding: 20px;">
     //     <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
-          
+
     //       <!-- Header -->
     //       <div style="background: #4f46e5; color: #ffffff; padding: 16px; text-align: center;">
     //         <h2 style="margin: 0;">EasyPay</h2>
     //         <p style="margin: 0; font-size: 14px;">Payment Confirmation</p>
     //       </div>
-          
+
     //       <!-- Body -->
     //       <div style="padding: 24px; color: #333333; line-height: 1.6;">
     //         <h3 style="margin-top: 0;">Hi ${value.fullName || "User"},</h3>
     //         <p>We’re happy to let you know that we’ve <b>received your payment</b>.</p>
-            
+
     //         <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 20px 0;">
     //           <p style="margin: 0;"><b>Status:</b> ✅ Payment Received</p>
     //           <p style="margin: 0;"><b>Reference:</b> ${reference}</p>
     //         </div>
-    
+
     //         <p>Once confirmed, we’ll send your official receipt. Please keep the reference for your records.</p>
-    
+
     //         <!-- QR Code -->
     //         <div style="text-align: center; margin-top: 20px;">
     //           <p style="font-size: 14px; color: #555;">Scan this QR code to verify your transaction:</p>
-    //           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reference}" 
+    //           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reference}"
     //                alt="QR Code for Payment Reference" style="margin-top: 10px;" />
     //         </div>
-    
+
     //         <p style="margin-top: 24px;">Thanks for using <b>EasyPay</b> 🎉</p>
     //       </div>
-          
+
     //       <!-- Footer -->
     //       <div style="background: #f3f4f6; padding: 12px; text-align: center; font-size: 12px; color: #666;">
     //         © ${String(new Date().getFullYear())} EasyPay. All rights reserved.
@@ -552,7 +552,7 @@ export const deleteTransaction = async (req: Request, res: Response) => {
     }
 
     logger.info(`Transaction deleted successfully with ID: ${id}`);
-    
+
     return res.status(200).json({
       message: "Transaction deleted successfully",
       success: true,
@@ -564,13 +564,70 @@ export const deleteTransaction = async (req: Request, res: Response) => {
         stack: error.stack,
       });
     } else {
-      logger.error("An error occurred while trying to delete transaction", { 
-        error: String(error) 
+      logger.error("An error occurred while trying to delete transaction", {
+        error: String(error),
       });
     }
-    
+
     return res.status(500).json({
       message: "An error occurred while trying to delete transaction",
+      success: false,
+    });
+  }
+};
+
+export const searchTransactions = async (req: Request, res: Response) => {
+  logger.info("Search transactions controller");
+  try {
+    const { query } = req.query;
+
+    if (!query || typeof query !== "string" || query.trim() === "") {
+      return res.status(400).json({
+        message: "Search query is required",
+        success: false,
+      });
+    }
+
+    // Create search filter - search through all transactions without limits
+    const searchFilter = {
+      $or: [
+        { email: { $options: "i", $regex: query.trim() } },
+        { fullName: { $options: "i", $regex: query.trim() } },
+        { reference: { $options: "i", $regex: query.trim() } },
+        { matricNumber: { $options: "i", $regex: query.trim() } },
+      ],
+    };
+
+    const transactions = await Transaction.find(searchFilter)
+      .sort({ createdAt: -1 })
+      .select("email amount status dueType proofUrl createdAt fullName reference matricNumber")
+      .lean();
+
+    const total = transactions.length;
+
+    return res.status(200).json({
+      data: transactions,
+      message: total > 0 ? `Found ${total.toString()} transactions matching "${query}"` : `No transactions found matching "${query}"`,
+      meta: {
+        hasMore: false,
+        searchQuery: query.trim(),
+        total,
+      },
+      success: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while searching transactions", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while searching transactions", {
+        error: String(error),
+      });
+    }
+    return res.status(500).json({
+      message: "An error occurred while searching transactions",
       success: false,
     });
   }

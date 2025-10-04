@@ -6,6 +6,7 @@ import {
   getAllTransactions,
   getRecentTransactions,
   getTransactionById,
+  searchTransactions,
   updateTransactionStatus,
 } from "#controllers/transaction.controller.js";
 import { authMiddleware } from "#middlewares/auth.middleware.js";
@@ -18,6 +19,7 @@ transactionRouter.get("/", authMiddleware, getAllTransactions);
 transactionRouter.get("/recent", authMiddleware, getRecentTransactions);
 transactionRouter.get("/admin", authMiddleware, getAdminTransactions);
 transactionRouter.get("/admin/success", authMiddleware, getAdminSuccessfulTransactions);
+transactionRouter.get("/search", authMiddleware, searchTransactions); 
 transactionRouter.get("/:id", authMiddleware, getTransactionById);
 transactionRouter.patch("/:id", authMiddleware, updateTransactionStatus);
 transactionRouter.delete("/:id", authMiddleware, deleteTransaction);

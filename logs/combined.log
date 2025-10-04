@@ -1034,3 +1034,55 @@
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-10-03T10:09:55.756Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-10-03T10:10:07.405Z"}
 {"level":"info","message":"✅ Redis connected","timestamp":"2025-10-03T10:10:18.636Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:21:56.368Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:34.316Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:43.476Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:44.933Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:49.300Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:52.176Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:24:55.876Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:25:51.012Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:26:14.704Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-04T07:26:18.330Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:26:51.376Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:26:58.109Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:27:01.851Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:27:13.094Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-04T07:27:13.099Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-04T07:27:22.287Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:27:30.127Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:27:30.138Z"}
+{"level":"error","message":"An error occured while trying to logout option domain is invalid","stack":"TypeError: option domain is invalid\n    at Object.serialize (/home/blackbobs/Desktop/Work/easypay-backend/node_modules/cookie/index.js:217:13)\n    at res.cookie (/home/blackbobs/Desktop/Work/easypay-backend/node_modules/express/lib/response.js:777:36)\n    at ServerResponse.clearCookie (/home/blackbobs/Desktop/Work/easypay-backend/node_modules/express/lib/response.js:720:15)\n    at logoutController (/home/blackbobs/Desktop/Work/easypay-backend/src/controllers/user.controller.ts:305:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-04T07:27:39.157Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:27:39.204Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:27:39.209Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-10-04T07:28:01.752Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:28:02.776Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:28:02.787Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:28:13.594Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:28:27.788Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:28:27.794Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:29:07.901Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:29:10.988Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:29:13.733Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:29:21.165Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:35:47.495Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:35:47.502Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:35:52.807Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:35:57.985Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:36:01.435Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:36:13.538Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:39:40.679Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:39:43.858Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-04T07:45:08.693Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-04T07:45:08.696Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:45:35.143Z"}
+{"level":"info","message":"Search transactions controller","timestamp":"2025-10-04T07:45:36.566Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-04T07:45:43.965Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:45:48.351Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:46:23.997Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:46:24.488Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:46:38.098Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:46:48.185Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:47:01.953Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:47:14.992Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-04T07:47:20.995Z"}
