@@ -303,7 +303,7 @@ export const logoutController = async (req: Request, res: Response) => {
 
     // Clear cookies with explicit options
     res.clearCookie("accessToken", {
-      domain: "https://easypay-backend-z1yc.onrender.com", 
+      domain: "easypay-backend-z1yc.onrender.com", 
       httpOnly: true,
       path: "/",
       sameSite: "none",
@@ -311,7 +311,7 @@ export const logoutController = async (req: Request, res: Response) => {
     });
 
     res.clearCookie("refreshToken", {
-      domain: "https://easypay-backend-z1yc.onrender.com",
+      domain: "easypay-backend-z1yc.onrender.com",
       httpOnly: true,
       path: "/",
       sameSite: "none",

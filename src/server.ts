@@ -1,4 +1,4 @@
-import corsOptions from "#config/cors.js";
+// import corsOptions from "#config/cors.js";
 import connectToDB from "#config/db.js";
 import errorMiddleware from "#middlewares/error.middleware.js";
 import { versionMiddleware } from "#middlewares/version.middleware.js";
@@ -26,7 +26,7 @@ app.use(
   }),
 );
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
