@@ -122,10 +122,13 @@ export const getAllTransactions = async (req: Request, res: Response) => {
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 50;
     const skip = (page - 1) * limit;
-    const [transactions, total] = await Promise.all([
-      Transaction.find().sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").skip(skip).limit(limit).lean(),
-      Transaction.countDocuments(),
-    ]);
+
+    // First get all transactions sorted alphabetically
+    const allTransactions = await Transaction.find().sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").lean();
+    const total = allTransactions.length;
+
+    // Then apply pagination to the sorted results
+    const transactions = allTransactions.slice(skip, skip + limit);
     if (transactions.length === 0) {
       logger.warn("No transaction available");
       return res.status(200).json({
