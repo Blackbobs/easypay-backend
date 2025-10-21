@@ -123,7 +123,7 @@ export const getAllTransactions = async (req: Request, res: Response) => {
     const limit = Number(req.query.limit) || 50;
     const skip = (page - 1) * limit;
     const [transactions, total] = await Promise.all([
-      Transaction.find().sort({ createdAt: -1 }).select("email amount status dueType proofUrl createdAt").skip(skip).limit(limit).lean(),
+      Transaction.find().sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").skip(skip).limit(limit).lean(),
       Transaction.countDocuments(),
     ]);
     if (transactions.length === 0) {
