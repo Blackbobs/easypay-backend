@@ -36,8 +36,8 @@ app.use("/api/v1/cloudinary", uploadRouter);
 // Health check route (important for Vercel)
 app.get("/health", (_req, res) => {
   res.status(200).json({
-    status: "OK",
     message: "Server is running",
+    status: "OK",
     timestamp: new Date().toISOString(),
   });
 });
