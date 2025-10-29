@@ -128,8 +128,6 @@ app.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
 
 app.use(errorMiddleware);
 
-// ✅ Do NOT call app.listen() on Vercel
-// Instead, connect to DB once and export the app
 connectToDB()
   .then(() => {
     console.log("Database connected");
