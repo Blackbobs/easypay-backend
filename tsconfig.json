@@ -11,7 +11,8 @@
       "#routes/*": ["routes/*"],
       "#schemas/*": ["schemas/*"],
       "#utils/*": ["utils/*"],
-      "#interface/*": ["interface/*"]
+      "#interface/*": ["interface/*"],
+      "#dto/*": ["dto/*"]
     },
     "lib": ["es2020"],
     "module": "ES2022",
