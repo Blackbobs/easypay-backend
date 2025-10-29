@@ -74,19 +74,22 @@
 //   process.exit(1);
 // });
 
-import connectToDB from "#config/db.js";
-import errorMiddleware from "#middlewares/error.middleware.js";
-import { versionMiddleware } from "#middlewares/version.middleware.js";
-import transactionRouter from "#routes/transaction.routes.js";
-import uploadRouter from "#routes/upload.routes.js";
-import userRouter from "#routes/user.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
 
+import connectToDB from "./src/config/db.js";
+import errorMiddleware from "./src/middlewares/error.middleware.js";
+import { versionMiddleware } from "./src/middlewares/version.middleware.js";
+import transactionRouter from "./src/routes/transaction.routes.js";
+import uploadRouter from "./src/routes/upload.routes.js";
+import userRouter from "./src/routes/user.routes.js";
+
+
+
 if (process.env.NODE_ENV === "production") {
-  void import("./utils/self-ping.js");
+  void import("./src/utils/self-ping.js");
 }
 
 const app = express();
@@ -96,12 +99,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    origin: [
-      "http://localhost:3000",
-      "https://ease-pay-chi.vercel.app",
-      "https://easypay-dashboard.vercel.app",
-    ],
-  })
+    origin: ["http://localhost:3000", "https://ease-pay-chi.vercel.app", "https://easypay-dashboard.vercel.app"],
+  }),
 );
 
 app.use(helmet());
