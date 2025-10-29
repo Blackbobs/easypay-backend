@@ -58,7 +58,7 @@ app.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
 app.use(errorMiddleware);
 
 // Vercel-specific: Export the app for serverless functions
-export default app;
+
 
 // Local development: Only start server if not in Vercel environment
 if (!process.env.VERCEL) {
@@ -88,3 +88,4 @@ if (!process.env.VERCEL) {
     })
     .catch(console.error);
 }
+export default app;
