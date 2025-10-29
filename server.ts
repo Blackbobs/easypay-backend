@@ -33,7 +33,7 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/transactions", transactionRouter);
 app.use("/api/v1/cloudinary", uploadRouter);
 
-// Health check route (important for Vercel)
+// Health check route
 app.get("/health", (_req, res) => {
   res.status(200).json({
     message: "Server is running",
@@ -57,35 +57,26 @@ app.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
 
 app.use(errorMiddleware);
 
-// Vercel-specific: Export the app for serverless functions
+// Initialize database connection
+const initializeDB = async () => {
+  try {
+    await connectToDB();
+    console.log('Database connected successfully');
+  } catch (error) {
+    console.error('Database connection failed:', error);
+  }
+};
 
+// Initialize DB (runs in both environments)
+void initializeDB();
 
-// Local development: Only start server if not in Vercel environment
+// Only start HTTP server when not in Vercel
 if (!process.env.VERCEL) {
-  const port = process.env.PORT ? Number(process.env.PORT) : 5050;
-
-  const startServer = async () => {
-    try {
-      await connectToDB();
-      app.listen(port, () => {
-        console.log(`Server is running on port: ${String(port)}`);
-      });
-    } catch (err) {
-      console.error("Failed to start server:", err);
-      process.exit(1);
-    }
-  };
-
-  startServer().catch((err: unknown) => {
-    console.error("Unexpected error:", err);
-    process.exit(1);
+  const port = process.env.PORT ?? "5050";
+  app.listen(Number(port), () => {
+    console.log(`Server is running on port: ${port}`);
   });
-} else {
-  // For Vercel, just connect to DB when the function starts
-  connectToDB()
-    .then(() => {
-      console.log("Database connected on Vercel");
-    })
-    .catch(console.error);
 }
+
+// Export for Vercel serverless functions
 export default app;
