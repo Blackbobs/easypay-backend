@@ -1192,3 +1192,26 @@
 {"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T13:56:52.666Z"}
 {"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T13:56:52.673Z"}
 {"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T13:56:52.970Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T14:03:59.047Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-10-31T14:04:06.960Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:04:07.509Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T14:04:13.257Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:04:13.268Z"}
+{"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T14:04:13.447Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-31T14:04:18.043Z"}
+{"level":"info","message":"Get transaction by id controller","timestamp":"2025-10-31T14:04:29.600Z"}
+{"level":"info","message":"Fetch all transactions controller","timestamp":"2025-10-31T14:04:51.578Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T14:06:28.867Z"}
+{"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T14:07:00.897Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:07:00.922Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T14:07:03.953Z"}
+{"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T14:07:05.220Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T14:07:19.757Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:07:19.770Z"}
+{"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T14:07:20.000Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T14:07:48.454Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:07:48.458Z"}
+{"level":"info","message":"Get all admins controller","timestamp":"2025-10-31T14:07:48.640Z"}
+{"level":"info","message":"Delete transaction controller","timestamp":"2025-10-31T14:07:54.502Z"}
+{"level":"info","message":"Transaction deleted successfully with ID: 6904c159b4237de754b64e4d","timestamp":"2025-10-31T14:07:54.693Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T14:07:54.712Z"}
