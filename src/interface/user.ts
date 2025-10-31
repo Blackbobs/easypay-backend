@@ -10,11 +10,12 @@ export interface IUser extends Document {
   college: College;
   createdAt: Date;
   department: Department;
-  dueType: DueType,
+  dueType: DueType;
   email: string;
   password: string;
   receiptName: string;
   role: Role;
+  totalAmountAvailable?: number;
   updatedAt: Date;
   username: string;
 }

@@ -169,6 +169,7 @@ export const getCurrentUser = async (req: Request, res: Response) => {
         email: user.email,
         id: user._id,
         role: user.role,
+        totalAmountAvailable: user.totalAmountAvailable ?? 0,
         username: user.username,
       },
       messsage: "Current logged in user fetched successfully",
@@ -303,7 +304,7 @@ export const logoutController = async (req: Request, res: Response) => {
 
     // Clear cookies with explicit options
     res.clearCookie("accessToken", {
-      domain: "easypay-backend-z1yc.onrender.com", 
+      domain: "easypay-backend-z1yc.onrender.com",
       httpOnly: true,
       path: "/",
       sameSite: "none",
@@ -333,6 +334,189 @@ export const logoutController = async (req: Request, res: Response) => {
     }
     return res.status(500).json({
       message: "Failed to log out",
+      success: false,
+    });
+  }
+};
+
+export const getAllAdmins = async (req: Request, res: Response) => {
+  logger.info("Get all admins controller");
+  try {
+    if (!req.user) {
+      logger.warn("Unauthorized access");
+      return res.status(401).json({
+        message: "Unauthorized",
+        success: false,
+      });
+    }
+
+    const currentUser = req.user as { id: Types.ObjectId; role: string };
+
+    // Check if the user is a superAdmin
+    if (currentUser.role !== "superAdmin") {
+      logger.warn("Only superAdmin can view all admins");
+      return res.status(403).json({
+        message: "Only superAdmin can view all admins",
+        success: false,
+      });
+    }
+
+    const admins = await User.find({ role: "admin" })
+      .select("username email college department dueType totalAmountAvailable receiptName createdAt")
+      .sort({ createdAt: -1 })
+      .lean();
+
+    return res.status(200).json({
+      data: admins,
+      message: "Admins fetched successfully",
+      success: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while fetching all admins", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while fetching all admins", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occurred while fetching all admins",
+      success: false,
+    });
+  }
+};
+
+export const setAdminTotalAmount = async (req: Request, res: Response) => {
+  logger.info("Set admin total amount controller");
+  try {
+    if (!req.user) {
+      logger.warn("Unauthorized access");
+      return res.status(401).json({
+        message: "Unauthorized",
+        success: false,
+      });
+    }
+
+    const currentUser = req.user as { id: Types.ObjectId; role: string };
+
+    // Check if the user is a superAdmin
+    if (currentUser.role !== "superAdmin") {
+      logger.warn("Only superAdmin can set admin total amount");
+      return res.status(403).json({
+        message: "Only superAdmin can set admin total amount",
+        success: false,
+      });
+    }
+
+    const { adminId, totalAmountAvailable } = req.body as {
+      adminId: string;
+      totalAmountAvailable: number;
+    };
+
+    if (!adminId) {
+      return res.status(400).json({
+        message: "adminId is required",
+        success: false,
+      });
+    }
+
+    if (typeof totalAmountAvailable !== "number" || totalAmountAvailable < 0) {
+      return res.status(400).json({
+        message: "totalAmountAvailable must be a positive number",
+        success: false,
+      });
+    }
+
+    // Find and update the specific admin
+    const admin = await User.findOneAndUpdate({ _id: adminId, role: "admin" }, { $set: { totalAmountAvailable } }, { new: true }).select(
+      "username email college department dueType totalAmountAvailable",
+    );
+
+    if (!admin) {
+      logger.warn(`No admin found with ID: ${adminId}`);
+      return res.status(404).json({
+        message: "Admin not found",
+        success: false,
+      });
+    }
+
+    logger.info(`Updated admin ${adminId} with total amount: ${totalAmountAvailable.toString()}`);
+
+    return res.status(200).json({
+      data: admin,
+      message: "Total amount set successfully",
+      success: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while setting admin total amount", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while setting admin total amount", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occurred while setting admin total amount",
+      success: false,
+    });
+  }
+};
+
+export const getAdminTotalAmount = async (req: Request, res: Response) => {
+  logger.info("Get admin total amount controller");
+  try {
+    if (!req.user) {
+      logger.warn("Unauthorized access");
+      return res.status(401).json({
+        message: "Unauthorized",
+        success: false,
+      });
+    }
+
+    const currentUser = req.user as { id: Types.ObjectId; role: string };
+
+    // Only admins can view their total amount
+    if (currentUser.role !== "admin") {
+      logger.warn("Only admins can view their total amount");
+      return res.status(403).json({
+        message: "Only admins can view their total amount",
+        success: false,
+      });
+    }
+
+    const admin = await User.findById(currentUser.id).select("totalAmountAvailable dueType college department").lean();
+
+    if (!admin) {
+      logger.warn("Admin not found");
+      return res.status(404).json({
+        message: "Admin not found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      data: {
+        college: admin.college,
+        department: admin.department,
+        dueType: admin.dueType,
+        totalAmountAvailable: admin.totalAmountAvailable ?? 0,
+      },
+      message: "Total amount fetched successfully",
+      success: true,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("An error occurred while fetching admin total amount", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      logger.error("An error occurred while fetching admin total amount", { error: String(error) });
+    }
+    return res.status(500).json({
+      message: "An error occurred while fetching admin total amount",
       success: false,
     });
   }
