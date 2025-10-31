@@ -1171,3 +1171,24 @@
 {"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T13:12:56.684Z"}
 {"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T13:12:56.690Z"}
 {"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T13:12:56.896Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:26:44.304Z"}
+{"level":"info","message":"Create user controller","timestamp":"2025-10-31T13:34:07.236Z"}
+{"level":"error","message":"Unable to create a new user User validation failed: department: `HSM` is not a valid enum value for path `department`.","stack":"ValidationError: User validation failed: department: `HSM` is not a valid enum value for path `department`.\n    at Document.invalidate (/home/blackbobs/Desktop/Work/easypay-backend/node_modules/mongoose/lib/document.js:3358:32)\n    at /home/blackbobs/Desktop/Work/easypay-backend/node_modules/mongoose/lib/document.js:3119:17\n    at /home/blackbobs/Desktop/Work/easypay-backend/node_modules/mongoose/lib/schemaType.js:1416:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","timestamp":"2025-10-31T13:34:15.384Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:37:47.026Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:37:56.507Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:38:49.858Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:38:58.603Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:39:09.000Z"}
+{"level":"info","message":"Create user controller","timestamp":"2025-10-31T13:41:22.550Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:46:53.706Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:47:20.842Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:47:31.898Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:48:23.987Z"}
+{"level":"info","message":"✅ Redis connected","timestamp":"2025-10-31T13:49:04.745Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T13:52:00.917Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T13:52:00.924Z"}
+{"level":"info","message":"Get all admins controller","timestamp":"2025-10-31T13:52:01.179Z"}
+{"level":"info","message":"Login user controller","timestamp":"2025-10-31T13:56:52.001Z"}
+{"level":"info","message":"Get current logged-in user controller","timestamp":"2025-10-31T13:56:52.666Z"}
+{"level":"info","message":"Get recent transaction controller","timestamp":"2025-10-31T13:56:52.673Z"}
+{"level":"info","message":"Get admin total amount controller","timestamp":"2025-10-31T13:56:52.970Z"}

@@ -119,12 +119,56 @@ export const createTransaction = async (req: Request, res: Response) => {
 export const getAllTransactions = async (req: Request, res: Response) => {
   logger.info("Fetch all transactions controller");
   try {
+    if (!req.user) {
+      logger.warn("Unauthorized access");
+      return res.status(401).json({
+        message: "Unauthorized",
+        success: false,
+      });
+    }
+
+    const currentUser = req.user as JwtPayload & { id: string };
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 50;
     const skip = (page - 1) * limit;
 
+    const filter: FilterQuery<ITransaction> = {};
+
+    // If user is admin, filter by their dueType
+    if (currentUser.role === Role.admin) {
+      const admin = await User.findById<IUser>(currentUser.id).lean<IUser>().exec();
+
+      if (!admin) {
+        return res.status(404).json({
+          message: "Admin not found",
+          success: false,
+        });
+      }
+
+      switch (admin.dueType) {
+        case DueType.college:
+          filter.college = admin.college;
+          filter.dueType = "college";
+          break;
+        case DueType.department:
+          filter.department = admin.department;
+          filter.dueType = "department";
+          break;
+        case DueType.hostel:
+          filter.dueType = "hostel";
+          break;
+        case DueType.sug:
+          filter.dueType = "sug";
+          break;
+        default:
+          logger.error("Unsupported due type");
+          throw new Error("Unsupported due type");
+      }
+    }
+    // If superAdmin, no filter is applied (shows all transactions)
+
     // First get all transactions sorted alphabetically
-    const allTransactions = await Transaction.find().sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").lean();
+    const allTransactions = await Transaction.find(filter).sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").lean();
     const total = allTransactions.length;
 
     // Then apply pagination to the sorted results
