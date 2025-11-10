@@ -9,6 +9,7 @@ import { versionMiddleware } from "./src/middlewares/version.middleware.js";
 import transactionRouter from "./src/routes/transaction.routes.js";
 import uploadRouter from "./src/routes/upload.routes.js";
 import userRouter from "./src/routes/user.routes.js";
+void import("./src/utils/self-ping.js");
 
 const app = express();
 
@@ -61,9 +62,9 @@ app.use(errorMiddleware);
 const initializeDB = async () => {
   try {
     await connectToDB();
-    console.log('Database connected successfully');
+    console.log("Database connected successfully");
   } catch (error) {
-    console.error('Database connection failed:', error);
+    console.error("Database connection failed:", error);
   }
 };
 
