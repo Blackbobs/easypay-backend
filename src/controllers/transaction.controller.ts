@@ -167,8 +167,8 @@ export const getAllTransactions = async (req: Request, res: Response) => {
     }
     // If superAdmin, no filter is applied (shows all transactions)
 
-    // First get all transactions sorted alphabetically
-    const allTransactions = await Transaction.find(filter).sort({ email: 1 }).select("email amount status dueType proofUrl createdAt").lean();
+    // First get all transactions sorted by most recent first
+    const allTransactions = await Transaction.find(filter).sort({ createdAt: -1 }).select("email amount status dueType proofUrl createdAt").lean();
     const total = allTransactions.length;
 
     // Then apply pagination to the sorted results
